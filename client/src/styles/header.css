@@ -1,0 +1,17 @@
+#logo {
+  width: 70px;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+}
+.auth {
+}
+.rightSide {
+  justify-content: space-between;
+  display: flex;
+}
+.searchBar {
+  display: flex;
+  justify-self: center;
+}
