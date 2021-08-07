@@ -1,17 +1,48 @@
 #logo {
-  width: 70px;
+  height: 40px;
 }
 header {
+  color: ghostwhite;
+  background-color: #504b49;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  border-radius: 2px;
+
+  align-items: center;
+}
+.logoPart {
+  align-items: center;
+  display: flex;
+}
+.searchbar {
+  padding-left: 10px;
+  width: 300px;
+  margin-left: 40px;
+  border-radius: 20px;
+  height: 25px;
+  outline: none;
 }
 .auth {
+  font-size: bold;
+  display: flex;
+
+  align-items: center;
 }
 .rightSide {
-  justify-content: space-between;
+  margin-right: -50px;
   display: flex;
 }
-.searchBar {
+#cartIcon {
+  height: 30px;
+}
+.CartPart {
+  align-items: center;
   display: flex;
-  justify-self: center;
+  align-content: center;
+}
+.Signup {
+  margin-right: 20px;
+}
+.Signin {
+  margin-right: 10px;
 }

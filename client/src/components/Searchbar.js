@@ -2,11 +2,9 @@ import React from "react";
 
 function Searchbar() {
   return (
-    <div>
-      <form>
-        <input />
-      </form>
-    </div>
+    <form>
+      <input className="searchbar" />
+    </form>
   );
 }
 
