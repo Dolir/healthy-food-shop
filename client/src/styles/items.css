@@ -1,0 +1,25 @@
+.itemsList {
+  overflow: hidden;
+  width: 805px;
+  display: flex;
+  text-align: center;
+  text-decoration: none;
+  list-style-type: none;
+}
+.itemImg {
+  height: 200px;
+}
+.itemsList.h3 {
+}
+.item {
+  height: 500px;
+  border: black solid 1px;
+  border-right: none;
+}
+#arrow-left {
+  transform: rotate(180deg);
+}
+#arrow-left,
+#arrow-right {
+  height: 20px;
+}

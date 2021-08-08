@@ -1,22 +1,21 @@
 import React from "react";
-
-function Item() {
+function Item({ item }) {
   return (
-    <div>
+    <li className="item">
       <div>
-        <img />
-        <img />
+        <img src={item.url} className="itemImg" alt="ItemImg" />
+        <img alt="" />
       </div>
       <div>
-        <span>515616</span>
-        <h3>256165</h3>
-        <p>fawdwadawdawd</p>
+        <span>{parseInt(item.price) + parseInt(item.discount) + 5}</span>
+        <h3>{item.price}</h3>
+        <p>{item.description}</p>
       </div>
       <div>
-        <button></button>
-        <img></img>
+        <button>To cart</button>
+        <img alt="" />
       </div>
-    </div>
+    </li>
   );
 }
 

@@ -7,7 +7,7 @@ function Home() {
     <div>
       <div className="main">
         <h2>Healthy food Better mood</h2>
-        <img src={fruits} id="fruitsImage" />
+        <img src={fruits} id="fruitsImage" alt="fruitsImage" />
       </div>
       <ItemsList />
       <div>REVIEWS</div>
