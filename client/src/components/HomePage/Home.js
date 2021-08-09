@@ -9,7 +9,10 @@ function Home() {
         <h2>Healthy food Better mood</h2>
         <img src={fruits} id="fruitsImage" alt="fruitsImage" />
       </div>
-      <ItemsList />
+      <div className="carousel-items-block">
+        <ItemsList />
+      </div>
+
       <div>REVIEWS</div>
     </div>
   );

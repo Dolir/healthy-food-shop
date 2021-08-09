@@ -5,22 +5,24 @@ import Searchbar from "./Searchbar";
 import cartIcon from "../images/cart.png";
 function Header() {
   return (
-    <header>
-      <div className="logoPart">
-        <img src={logo} id="logo" alt="logo" />
-        <h3>Health</h3>
-      </div>
-      <Searchbar />
-      <div className="rightSide">
-        <div className="auth">
-          <a className="Signup">Sign up</a>
-          <a className="Signin">Sign in</a>
+    <div className="header-container">
+      <header>
+        <div className="logoPart">
+          <img src={logo} id="logo" alt="logo" />
+          <h3>Health</h3>
         </div>
-        <div className="CartPart">
-          <img src={cartIcon} id="cartIcon" alt="cartIcon" />
+        <Searchbar />
+        <div className="rightSide">
+          <div className="auth">
+            <a className="Signup">Sign up</a>
+            <a className="Signin">Sign in</a>
+          </div>
+          <div className="CartPart">
+            <img src={cartIcon} id="cartIcon" alt="cartIcon" />
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+    </div>
   );
 }
 

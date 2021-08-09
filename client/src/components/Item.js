@@ -7,12 +7,15 @@ function Item({ item }) {
         <img alt="" />
       </div>
       <div>
-        <span>{parseInt(item.price) + parseInt(item.discount) + 5}</span>
-        <h3>{item.price}</h3>
-        <p>{item.description}</p>
+        <span className="old-price">
+          {parseInt(item.price) + parseInt(item.discount) + 5}$
+        </span>
+        <h3 className="item-price">{item.price}$</h3>
+        <h3 className="item-name">{item.name}</h3>
+        {/* <p>{item.description}</p> */}
       </div>
       <div>
-        <button>To cart</button>
+        <button className="tocart-btn">TO CART</button>
         <img alt="" />
       </div>
     </li>

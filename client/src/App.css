@@ -1,8 +1,8 @@
-* {
-  font-family: "Atkinson Hyperlegible", sans-serif;
-  font-weight: 300;
+.App {
 }
 body {
+  font-family: "Atkinson Hyperlegible", sans-serif;
+  font-weight: 300;
   height: 2000px;
 }
 ::-webkit-scrollbar {

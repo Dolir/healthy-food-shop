@@ -7,8 +7,12 @@ header {
   display: flex;
   justify-content: space-around;
   border-radius: 2px;
-
+  width: 1500px;
   align-items: center;
+}
+.header-container {
+  display: flex;
+  justify-content: center;
 }
 .logoPart {
   align-items: center;
@@ -29,7 +33,6 @@ header {
   align-items: center;
 }
 .rightSide {
-  margin-right: -50px;
   display: flex;
 }
 #cartIcon {

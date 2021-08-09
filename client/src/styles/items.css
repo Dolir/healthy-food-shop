@@ -1,20 +1,33 @@
 .itemsList {
-  overflow: hidden;
-  width: 805px;
   display: flex;
   text-align: center;
   text-decoration: none;
   list-style-type: none;
+  padding: 0;
+  transition-duration: 0.5s;
 }
 .itemImg {
-  height: 200px;
+  height: 250px;
+  width: 240px;
 }
-.itemsList.h3 {
+
+.best-selling {
+  border-bottom: black solid 1px;
 }
 .item {
+  width: 250px;
   height: 500px;
-  border: black solid 1px;
   border-right: none;
+}
+.item:hover {
+  box-shadow: 0 0px 4px rgba(0, 0, 0, 0.54);
+}
+.old-price {
+  text-decoration: line-through;
+  color: rgb(139, 139, 139);
+}
+.price {
+  font-size: 20px;
 }
 #arrow-left {
   transform: rotate(180deg);
@@ -22,4 +35,53 @@
 #arrow-left,
 #arrow-right {
   height: 20px;
+}
+.items-container {
+  overflow: hidden;
+  width: 1000px;
+  display: flex;
+  padding: 0;
+  padding-left: 5px;
+  padding-right: 5px;
+  transition-duration: 0.5s;
+}
+.carousel-items-block {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+.arrow-right-btn {
+  margin-left: 100px;
+}
+.arrow-left-btn,
+.arrow-right-btn {
+  border-radius: 10px;
+  background-color: rgb(243, 207, 146);
+  border: 0;
+  box-shadow: 0 0px 7px rgba(0, 0, 0, 1);
+}
+.arrow-left-btn:active,
+.arrow-right-btn:active {
+  background-color: rgb(151, 134, 101);
+  transform: translateY(2px);
+}
+.tocart-btn {
+  width: 100px;
+  height: 30px;
+  border-radius: 10px;
+  font-size: 16px;
+  color: rgb(255, 255, 255);
+  background-color: rgb(83, 80, 81);
+}
+.tocart-btn:active {
+  background-color: rgb(46, 46, 46);
+  transform: translateY(2px);
+}
+.item-name {
+  font-size: 20px;
+}
+.item-price {
+  color: brown;
+  font-size: 30px;
+  margin-top: 0;
 }
