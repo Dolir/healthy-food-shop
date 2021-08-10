@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 const initialState = {
   items: [],
-  status: null,
+  isLoading: null,
 };
 export const getItems = createAsyncThunk("items/getItems", async (limitNum) => {
   if (limitNum) {
@@ -20,11 +20,11 @@ export const itemsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getItems.pending, (state) => {
-        state.status = "loading";
+        state.isLoading = "loading";
       })
       .addCase(getItems.fulfilled, (state, action) => {
         state.items = action.payload;
-        state.status = "idle";
+        state.isLoading = "loaded";
       });
   },
 });

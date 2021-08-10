@@ -1,9 +1,25 @@
-.App {
-}
 body {
   font-family: "Atkinson Hyperlegible", sans-serif;
   font-weight: 300;
   height: 2000px;
+  margin: 0;
+  margin-top: 8px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+.App {
+  width: 1500px;
+}
+
+/* h1,
+h2,
+h3,
+h4,
+p,
+span, */
+button {
+  cursor: pointer;
 }
 ::-webkit-scrollbar {
   width: 15px;

@@ -12,7 +12,7 @@ function Item({ item }) {
         </span>
         <h3 className="item-price">{item.price}$</h3>
         <h3 className="item-name">{item.name}</h3>
-        {/* <p>{item.description}</p> */}
+        {/* <p>{item.description}</p>   */}
       </div>
       <div>
         <button className="tocart-btn">TO CART</button>

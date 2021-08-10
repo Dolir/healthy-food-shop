@@ -1,5 +1,5 @@
 #fruitsImage {
-  width: 1500px;
+  width: inherit;
   object-fit: cover;
   height: inherit;
   position: absolute;
@@ -8,8 +8,9 @@
   filter: brightness(80%);
 }
 .main {
+  width: inherit;
   margin-top: 10px;
-  height: 500px;
+  height: 300px;
   display: flex;
   justify-content: center;
 }
@@ -27,4 +28,7 @@
   color: #ffffff;
 
   z-index: 1;
+}
+.main-page {
+  width: inherit;
 }
