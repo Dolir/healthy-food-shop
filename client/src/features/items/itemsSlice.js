@@ -20,11 +20,11 @@ export const itemsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getItems.pending, (state) => {
-        state.isLoading = "loading";
+        state.isLoading = true;
       })
       .addCase(getItems.fulfilled, (state, action) => {
         state.items = action.payload;
-        state.isLoading = "loaded";
+        state.isLoading = false;
       });
   },
 });

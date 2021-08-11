@@ -1,0 +1,22 @@
+.reviews-block {
+  display: flex;
+  justify-content: space-around;
+  width: inherit;
+}
+.review p {
+  margin-right: 10px;
+  margin-left: 10px;
+  font-size: 25px;
+}
+.review {
+  border-radius: 30px;
+  box-shadow: 0 0px 4px rgba(0, 0, 0, 1);
+  margin-right: 10px;
+  margin-left: 10px;
+  height: 500px;
+  width: 400px;
+}
+
+.reviews-container {
+  width: inherit;
+}

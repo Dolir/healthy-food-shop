@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const items = require("./routes/api/Items");
+const reviews = require("./routes/api/reviews");
 const config = require("config");
 const path = require("path");
 const app = express();
@@ -18,6 +19,7 @@ mongoose
   .catch((err) => console.log(err));
 
 app.use("/api/items", items);
+app.use("/api/reviews", reviews);
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
   app.get("*", (req, res) => {

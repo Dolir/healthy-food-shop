@@ -7,6 +7,7 @@ import arrow from "../images/arrow.png";
 import LoadingBlock from "./LoadingBlock";
 function ItemsList() {
   const [counter, setCounter] = React.useState(0);
+  const timeoutRef = React.useRef(null);
   const items = useSelector(selectItems);
   const dispatch = useDispatch();
   const itemsList = document.querySelector(".itemsList");
@@ -14,13 +15,25 @@ function ItemsList() {
   React.useEffect(() => {
     dispatch(getItems());
   }, []);
+
   React.useEffect(() => {
     if (!itemsList) return;
+    clearTimeout(timeout);
+    resetTimeout();
+    timeoutRef.current = setTimeout(arrowSlideRight, 5000);
+
     itemsList.style.transform = `translateX(-${
       itemsList.children[0].clientWidth * counter
     }px)`;
+    return () => {
+      resetTimeout();
+    };
   }, [counter]);
-
+  function resetTimeout() {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+  }
   function arrowSlideLeft(e) {
     if (counter <= 0) {
       setCounter(
@@ -46,10 +59,14 @@ function ItemsList() {
       setCounter(counter + 1);
     }
   }
+  let timeout;
+  if (items.isLoading === false) {
+    timeout = setTimeout(arrowSlideRight, 5000);
+  }
 
   return (
     <div className="carousel">
-      <h1 className="best-selling">Best selling</h1>
+      <h1 className="header-text">Best selling</h1>
       <div>
         <button onClick={arrowSlideLeft} className="arrow-left-btn">
           <img src={arrow} id="arrow-left" alt="left-arrow" />
