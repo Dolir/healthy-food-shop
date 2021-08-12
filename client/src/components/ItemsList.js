@@ -26,6 +26,7 @@ function ItemsList() {
       itemsList.children[0].clientWidth * counter
     }px)`;
     return () => {
+      clearTimeout(timeout);
       resetTimeout();
     };
   }, [counter]);
@@ -47,7 +48,8 @@ function ItemsList() {
     }
   }
   function arrowSlideRight(e) {
-    if (
+    if (!itemsList) return;
+    else if (
       counter >=
       Math.round(
         itemsList.children.length -

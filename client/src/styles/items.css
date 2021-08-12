@@ -7,6 +7,15 @@
   transition-duration: 0.3s;
   transition-timing-function: ease-in-out;
 }
+.itemsList2 {
+  display: flex;
+  text-align: center;
+  text-decoration: none;
+  list-style-type: none;
+  padding: 0;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+}
 .itemImg {
   height: 250px;
   width: 240px;

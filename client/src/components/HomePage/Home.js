@@ -13,6 +13,7 @@ function Home() {
       <div className="content-block">
         <ItemsList />
       </div>
+
       <div className="content-block">
         <Reviews />
       </div>

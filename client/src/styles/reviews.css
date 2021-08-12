@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-around;
   width: inherit;
+  min-height: 600px;
 }
 .review p {
   margin-right: 10px;
@@ -15,8 +16,22 @@
   margin-left: 10px;
   height: 500px;
   width: 400px;
+  background-color: rgba(255, 255, 255, 0.9);
 }
 
 .reviews-container {
+  background-image: url(../images/fruits.jpg);
+  border-radius: 5px;
   width: inherit;
+  padding-bottom: 50px;
+
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.reviews-container > .header-text {
+  background-color: white;
+  border-radius: 10px;
+  border: none;
+  width: 200px;
 }

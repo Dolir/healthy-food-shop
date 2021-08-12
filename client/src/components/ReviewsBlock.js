@@ -6,7 +6,7 @@ import "../styles/reviews.css";
 function ReviewsBlock() {
   const reviews = useSelector(selectReviews);
   const dispatch = useDispatch();
-  console.log(reviews);
+
   React.useEffect(() => {
     dispatch(getReviews());
   }, []);
@@ -15,7 +15,9 @@ function ReviewsBlock() {
       <h1 className="header-text">Reviews</h1>
       <div className="reviews-block">
         {reviews.isLoading === false
-          ? reviews.reviews[0].reviews.map((x) => <Review data={x} />)
+          ? reviews.reviews[0].reviews.map((x, key) => (
+              <Review data={x} key={key} />
+            ))
           : ""}
       </div>
     </div>

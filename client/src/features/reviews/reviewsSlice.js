@@ -13,7 +13,6 @@ export const getReviews = createAsyncThunk(
       return response.data;
     }
     const response = await axios.get("/api/items/reviews");
-    console.log(response.data);
     return response.data;
   }
 );
