@@ -26,8 +26,8 @@ function ItemsList() {
       itemsList.children[0].clientWidth * counter
     }px)`;
     return () => {
-      clearTimeout(timeout);
       resetTimeout();
+      clearTimeout(timeout);
     };
   }, [counter]);
   function resetTimeout() {

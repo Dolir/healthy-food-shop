@@ -3,20 +3,40 @@ import logo from "../images/logoOrange.png";
 import "../styles/header.css";
 import Searchbar from "./Searchbar";
 import cartIcon from "../images/cart.png";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 function Header() {
+  const { pathname } = useLocation();
+  console.log(pathname);
   return (
     <div className="header-container">
       <header>
-        <div className="logoPart">
-          <img src={logo} id="logo" alt="logo" />
+        <div className="logo-navbar">
           <NavLink to="/">
-            <h3>Health</h3>
+            <div className="logoPart">
+              <img src={logo} id="logo" alt="logo" />
+            </div>
           </NavLink>
-          <NavLink to="/shop">Shop</NavLink>
-          <NavLink to="/contacts">contacts</NavLink>
-          <NavLink to="/account">account</NavLink>
+          <nav>
+            <NavLink
+              to="/shop"
+              className={pathname === "/shop" ? "active-nav" : ""}
+            >
+              Shop
+            </NavLink>
+            <NavLink
+              to="/contacts"
+              className={pathname === "/contacts" ? "active-nav" : ""}
+            >
+              Contacts
+            </NavLink>
+            <NavLink
+              to="/account"
+              className={pathname === "/account" ? "active-nav" : ""}
+            >
+              Account
+            </NavLink>
+          </nav>
         </div>
         <Searchbar />
         <div className="rightSide">

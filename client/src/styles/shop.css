@@ -1,0 +1,47 @@
+.shop-container {
+  margin: 20px;
+  height: 850px;
+  width: 100%;
+  display: flex;
+}
+.filter {
+  height: inherit;
+  width: 300px;
+  background-color: rgb(121, 32, 32);
+}
+.items-grid-container {
+  overflow: scroll;
+  background-color: aqua;
+  margin-right: 40px;
+  margin-left: 40px;
+  height: inherit;
+  width: inherit;
+}
+.items-sort {
+  background-color: lightcoral;
+  height: 50px;
+}
+.items-grid {
+  display: flex;
+  flex-wrap: wrap;
+  height: 900px;
+  background-color: lightslategray;
+}
+.items-grid-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+}
+.items-grid-list .itemImg {
+  height: 150px;
+  width: auto;
+}
+.items-grid-list .item {
+  height: 320px;
+  width: 200px;
+}
+.items-pages {
+  height: 50px;
+  background-color: mediumblue;
+}

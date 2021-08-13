@@ -1,23 +1,12 @@
 import React from "react";
-
+import "../../styles/shop.css";
+import ItemsGrid from "./ItemsGrid";
+import Filter from "./Filter";
 function Shop() {
   return (
-    <div style={{ textAlign: "center" }}>
-      <h1>
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text Lorem
-        Ipsum is simply dummy text of the printing and typesetting industry.
-        Lorem Ipsum has been the industry's standard dummy text Lorem Ipsum is
-        simply dummy text of the printing and typesetting industry. Lorem Ipsum
-        has been the industry's standard dummy text Lorem Ipsum is simply dummy
-        text of the printing and typesetting industry. Lorem Ipsum has been the
-        industry's standard dummy text Lorem Ipsum is simply dummy text of the
-        printing and typesetting industry. Lorem Ipsum has been the industry's
-        standard dummy text Lorem Ipsum is simply dummy text of the printing and
-        typesetting industry. Lorem Ipsum has been the industry's standard dummy
-        text Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text
-      </h1>
+    <div className="shop-container">
+      <Filter />
+      <ItemsGrid />
     </div>
   );
 }

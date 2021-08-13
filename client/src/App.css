@@ -20,7 +20,7 @@ body {
 
 .App {
   width: 1500px;
-  min-height: 1000px;
+  min-height: 900px;
   box-shadow: 0 0px 11px rgba(0, 0, 0, 0.18);
 }
 #root {
@@ -56,4 +56,14 @@ button {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+@media only screen and (max-width: 1570px) {
+  .App {
+    width: 1000px;
+  }
+}
+@media only screen and (max-width: 1090px) {
+  .App {
+    width: 750px;
+  }
 }

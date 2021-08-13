@@ -1,9 +1,9 @@
 #logo {
-  height: 40px;
+  height: 50px;
 }
 header {
   color: ghostwhite;
-  background-color: #504b49;
+  background-color: #525252;
   display: flex;
   justify-content: space-around;
   border-radius: 2px;
@@ -19,11 +19,16 @@ header {
   align-items: center;
   display: flex;
 }
+.logoPart a {
+  color: white;
+  text-decoration: none;
+}
 .searchbar {
+  font-size: large;
+  margin-right: 45px;
   padding-left: 10px;
   width: 300px;
-  margin-left: 40px;
-  border-radius: 20px;
+  border-radius: 5px;
   height: 25px;
   outline: none;
 }
@@ -46,7 +51,36 @@ header {
 }
 .Signup {
   margin-right: 20px;
+  text-decoration: underline;
 }
 .Signin {
   margin-right: 10px;
+  text-decoration: underline;
+}
+nav a {
+  margin-left: 5px;
+  padding: 2px;
+  color: #ffffff;
+  text-decoration: none;
+}
+nav {
+  width: 170px;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo-navbar {
+  display: flex;
+}
+.active-nav {
+  background-color: rgb(65, 59, 59);
+  box-shadow: 0 0px 4px rgba(0, 0, 0, 1);
+  padding: 3px;
+  color: #ffffff;
+}
+@media only screen and (max-width: 1090px) {
+  .searchbar {
+    width: 200px;
+  }
 }

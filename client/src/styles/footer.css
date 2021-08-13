@@ -35,3 +35,13 @@ footer h1 {
 .default-ul li {
   font-size: 20px;
 }
+@media only screen and (max-width: 1570px) {
+  .footer-content {
+    width: 800px;
+  }
+}
+@media only screen and (max-width: 1090px) {
+  .footer-content {
+    width: 650px;
+  }
+}
