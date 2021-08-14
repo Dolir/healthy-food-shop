@@ -1,16 +1,15 @@
 .shop-container {
   margin: 20px;
-  height: 850px;
+  min-height: 850px;
   width: 100%;
   display: flex;
 }
 .filter {
-  height: inherit;
+  height: 800px;
   width: 300px;
   background-color: rgb(121, 32, 32);
 }
 .items-grid-container {
-  overflow: scroll;
   background-color: aqua;
   margin-right: 40px;
   margin-left: 40px;
@@ -18,13 +17,24 @@
   width: inherit;
 }
 .items-sort {
+  display: flex;
   background-color: lightcoral;
   height: 50px;
 }
+.items-sort h3 {
+  margin: 0;
+}
+.options-list {
+  border: 3px solid black;
+  position: relative;
+  background-color: white;
+  z-index: 2;
+}
+
 .items-grid {
   display: flex;
   flex-wrap: wrap;
-  height: 900px;
+  min-height: 900px;
   background-color: lightslategray;
 }
 .items-grid-list {
@@ -36,6 +46,7 @@
 .items-grid-list .itemImg {
   height: 150px;
   width: auto;
+  width: 150px;
 }
 .items-grid-list .item {
   height: 320px;

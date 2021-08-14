@@ -2,16 +2,21 @@ import React from "react";
 import Item from "../Item";
 import { useDispatch, useSelector } from "react-redux";
 import { selectItems, getItems } from "../../features/items/itemsSlice";
+import SortPopup from "./SortPopup";
 function ItemsGrid() {
   const items = useSelector(selectItems);
   const dispatch = useDispatch();
   React.useEffect(() => {
     dispatch(getItems());
   }, []);
+
   console.log(items);
   return (
     <div className="items-grid-container">
-      <div className="items-sort">sort</div>
+      <div className="items-sort">
+        <h3>Sort by</h3>
+        <SortPopup />
+      </div>
       <div className="items-grid">
         <ul className="items-grid-list">
           {!items.isLoading

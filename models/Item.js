@@ -23,6 +23,14 @@ const ItemSchema = new Schema(
       type: String,
       required: true,
     },
+    reviews: {
+      type: Array,
+      required: true,
+    },
+    type: {
+      type: String,
+      required: true,
+    },
   },
   { collection: "Items" }
 );

@@ -13,7 +13,7 @@ function ItemsList() {
   const itemsList = document.querySelector(".itemsList");
   const itemsContainer = document.querySelector(".items-container");
   React.useEffect(() => {
-    dispatch(getItems());
+    dispatch(getItems(10));
   }, []);
 
   React.useEffect(() => {
