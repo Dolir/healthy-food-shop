@@ -1,29 +1,36 @@
 import React from "react";
-
-function SortPopup() {
-  const [option, setOption] = React.useState("Alphabet");
+import { Link } from "react-router-dom";
+function SortPopup({ option, setOption }) {
   function handleDisplay(e) {
-    const elementDisplay = document.querySelector(".options-list");
-    // if (elementDisplay === "none") {
-    //   elementDisplay = "block";
-    // } else {
-    //   elementDisplay = "none";
-    // }
-    document.querySelector(".options-list").style.display =
+    let elementDisplay = document.querySelector(".options-list");
+    elementDisplay.style.display =
       elementDisplay.style.display === "none" ? "block" : "none";
   }
   function handleSelect(e) {
+    if (e.target.nodeName === "SPAN") {
+      setOption(e.target.parentElement.innerText);
+      handleDisplay();
+      return;
+    }
     setOption(e.target.innerText);
     handleDisplay();
   }
   return (
-    <div>
-      <input type="button" value={option} onClick={handleDisplay} />
-      <ul className="options-list">
-        <li onClick={handleSelect}>Alphabet</li>
-        <li onClick={handleSelect}>Price(high to low)</li>
-        <li onClick={handleSelect}>Price(low to high)</li>
-      </ul>
+    <div className="sort-popup">
+      <div onClick={handleDisplay}>
+        <span>{option}</span>
+      </div>
+      <Link to="/shop/page/1">
+        <ul className="options-list" style={{ display: "none" }}>
+          <li onClick={handleSelect}>Alphabet</li>
+          <li onClick={handleSelect}>
+            Price<span className="lowlight">(high to low)</span>
+          </li>
+          <li onClick={handleSelect}>
+            Price<span className="lowlight">(low to high)</span>
+          </li>
+        </ul>
+      </Link>
     </div>
   );
 }

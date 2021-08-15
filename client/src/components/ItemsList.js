@@ -13,12 +13,12 @@ function ItemsList() {
   const itemsList = document.querySelector(".itemsList");
   const itemsContainer = document.querySelector(".items-container");
   React.useEffect(() => {
-    dispatch(getItems(10));
+    dispatch(getItems({ limit: 10 }));
   }, []);
 
   React.useEffect(() => {
     if (!itemsList) return;
-    clearTimeout(timeout);
+    // clearTimeout(timeout);
     resetTimeout();
     timeoutRef.current = setTimeout(arrowSlideRight, 5000);
 
@@ -27,9 +27,9 @@ function ItemsList() {
     }px)`;
     return () => {
       resetTimeout();
-      clearTimeout(timeout);
+      // clearTimeout(timeout);
     };
-  }, [counter]);
+  }, [counter, itemsList]);
   function resetTimeout() {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
@@ -61,10 +61,10 @@ function ItemsList() {
       setCounter(counter + 1);
     }
   }
-  let timeout;
-  if (items.isLoading === false) {
-    timeout = setTimeout(arrowSlideRight, 5000);
-  }
+  // let timeout;
+  // if (items.isLoading === false) {
+  //   timeout = setTimeout(arrowSlideRight, 5000);
+  // }
 
   return (
     <div className="carousel">

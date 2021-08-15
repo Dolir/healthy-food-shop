@@ -3,16 +3,26 @@ import axios from "axios";
 const initialState = {
   items: [],
   isLoading: null,
+  count: 0,
 };
-export const getItems = createAsyncThunk("items/getItems", async (limitNum) => {
-  if (limitNum) {
-    const response = await axios.get(`/api/items?limit=${limitNum}`);
+export const getItems = createAsyncThunk("items/getItems", async (options) => {
+  if (options) {
+    const response = await axios.get(
+      `/api/items?limit=${options.limit}&sort=${options.sort}&skip=${options.skip}`
+    );
     return response.data;
   }
   const response = await axios.get("/api/items");
   return response.data;
 });
 
+export const getItemsCount = createAsyncThunk(
+  "items/getItemsCount",
+  async () => {
+    const response = await axios.get("/api/items/count");
+    return response.data;
+  }
+);
 export const itemsSlice = createSlice({
   name: "items",
   initialState,
@@ -25,6 +35,9 @@ export const itemsSlice = createSlice({
       .addCase(getItems.fulfilled, (state, action) => {
         state.items = action.payload;
         state.isLoading = false;
+      })
+      .addCase(getItemsCount.fulfilled, (state, action) => {
+        return { ...state, count: action.payload.count };
       });
   },
 });

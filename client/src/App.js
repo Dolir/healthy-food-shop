@@ -12,7 +12,7 @@ function App() {
       <Router>
         <Header />
         <Switch>
-          <Route path="/shop">
+          <Route path="/shop/page/:page">
             <Shop />
           </Route>
           <Route path="/contacts">

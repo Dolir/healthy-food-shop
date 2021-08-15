@@ -5,10 +5,31 @@ const mongoose = require("mongoose");
 
 router.get("/", (req, res) => {
   const { limit } = req.query;
+  const { skip } = req.query;
+  let { sort } = req.query;
+  switch (sort) {
+    case "Alphabet":
+      sort = { name: 1 };
+      break;
+    case "Price(high to low)":
+      sort = { price: -1 };
+      break;
+    case "Price(low to high)":
+      sort = { price: 1 };
+      break;
+
+    default:
+      sort = { name: 1 };
+      break;
+  }
   Item.find()
+    .sort(sort)
+    .skip(parseInt(skip))
     .limit(parseInt(limit))
-    .sort({ name: 1 })
     .then((items) => res.json(items));
+});
+router.get("/count", (req, res) => {
+  Item.countDocuments().then((count) => res.json({ count: count }));
 });
 router.get("/reviews", (req, res) => {
   const { limit } = req.query;

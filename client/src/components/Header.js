@@ -7,7 +7,6 @@ import { NavLink, useLocation } from "react-router-dom";
 
 function Header() {
   const { pathname } = useLocation();
-  console.log(pathname);
   return (
     <div className="header-container">
       <header>
@@ -19,20 +18,20 @@ function Header() {
           </NavLink>
           <nav>
             <NavLink
-              to="/shop"
-              className={pathname === "/shop" ? "active-nav" : ""}
+              to="/shop/page/1"
+              className={pathname.startsWith("/shop") ? "active-nav" : ""}
             >
               Shop
             </NavLink>
             <NavLink
               to="/contacts"
-              className={pathname === "/contacts" ? "active-nav" : ""}
+              className={pathname.startsWith("/contacts") ? "active-nav" : ""}
             >
               Contacts
             </NavLink>
             <NavLink
               to="/account"
-              className={pathname === "/account" ? "active-nav" : ""}
+              className={pathname.startsWith("/account") ? "active-nav" : ""}
             >
               Account
             </NavLink>
