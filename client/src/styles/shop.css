@@ -6,11 +6,31 @@
   display: flex;
 }
 .filter {
-  font-size: 30px;
   margin-left: -20px;
   height: 800px;
   width: 300px;
   box-shadow: 0 0px 2px rgba(0, 0, 0, 0.8);
+  border-radius: 5px;
+  /* background-color: rgb(236, 236, 235); */
+}
+.filter > div {
+  margin-bottom: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
+}
+.filter > div h4 {
+  margin-left: 10px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+.filter > div ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-left: 10px;
+}
+.filter h2 {
+  text-align: center;
+  margin: 0;
 }
 .items-grid-container {
   border-top: 1px solid rgba(0, 0, 0, 0.18);
@@ -115,9 +135,11 @@
 .items-pages a {
   text-decoration: none;
   color: black;
-
+  margin-top: 8px;
   margin-right: 8px;
   margin-left: 8px;
+  height: 20px;
+  width: 30px;
 }
 .active-page {
   background-color: rgb(197, 197, 197) !important;
@@ -125,8 +147,69 @@
 .just-page {
   box-shadow: 0 0px 4px rgba(0, 0, 0, 1);
   border-radius: 3px;
-  padding-left: 8px;
-  width: 20px;
+  text-align: center;
+  width: inherit;
+  height: inherit;
   font-size: 18px;
-  margin: 8px;
+}
+.price-range-text {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.price-range-text span {
+  font-weight: 600;
+  text-align: center;
+  width: 50px;
+  margin: 10px;
+}
+.price-range-text span p {
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+.price-range-text span input {
+  margin-top: 5px;
+  border-radius: 5px;
+  outline: none;
+  border: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.507);
+  font-size: large;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+
+  width: 100%;
+}
+
+.price-range-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.noUi-connect {
+  background-color: rgb(221, 134, 134) !important;
+}
+.noUi-handle {
+  box-shadow: 0 0px 5px rgba(0, 0, 0, 0.5) !important;
+  width: 20px !important;
+  height: 25px !important;
+}
+.noUi-base {
+}
+.noUi-target {
+  width: 70% !important;
+}
+.noUi-handle-upper {
+}
+.noUi-handle-lower {
+  margin-right: 15px;
+}
+.noUi-handle:before,
+.noUi-handle:after {
+  display: none !important;
+}
+.noUi-active {
+  background-color: rgb(221, 221, 221) !important;
+}
+.filter-checkboxes {
 }

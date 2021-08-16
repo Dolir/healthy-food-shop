@@ -31,6 +31,18 @@ router.get("/", (req, res) => {
 router.get("/count", (req, res) => {
   Item.countDocuments().then((count) => res.json({ count: count }));
 });
+router.get("/maxprice", (req, res) => {
+  Item.findOne({}, { price: 1, _id: 0 })
+    .sort({ price: -1 })
+    .limit(1)
+    .then((max) => res.json(max));
+});
+router.get("/minprice", (req, res) => {
+  Item.findOne({}, { price: 1, _id: 0 })
+    .sort({ price: +1 })
+    .limit(1)
+    .then((max) => res.json(max));
+});
 router.get("/reviews", (req, res) => {
   const { limit } = req.query;
   Item.find({}, { reviews: 1, _id: 0 })
@@ -81,114 +93,114 @@ router.post("/", (req, res) => {
       .insertMany(
         [
           {
-            name: "Valencia Orange",
-            price: "165",
-            description:
-              "Oddly enough, the valencia orange is not from the city in Spain, but was created in southern California sometime in the mid-19th century. Though it is among the most common oranges in the U.S., it’s also the only major variety to be harvested in the summer; the season runs from March to July. Very sweet, with low acidity and a bright orange color, the valencia is the most common juicing orange, though it’s also eaten.",
-            discount: "0",
-            url: "https://modernfarmer.com/wp-content/uploads/2018/01/valencia1.jpg",
-            category: "fruits",
-            reviews: [],
-            type: "orange",
-          },
-          {
-            name: "Navel Orange",
-            price: "170",
-            description:
-              "It’s not totally clear where the navel orange is from – some say Brazil, some say Portugal – but it’s the most popular orange for eating in the U.S. The navel orange gets its name from the fact that it tries to grow a second orange at its base, which produces an effect somewhat like a human bellybutton. They are often seedless and thus sterile; new navel trees come from cuttings rather than plantings. In flavor, a navel is a bit more bitter than a valencia, but also hardier, with a thicker peel.",
-            discount: "5",
-            url: "https://modernfarmer.com/wp-content/uploads/2018/02/Navel_Orange.jpg",
-            category: "fruits",
-            reviews: [],
-            type: "orange",
-          },
-          {
-            name: "Clementine",
+            name: "Cherry tomatoes",
             price: "200",
             description:
-              "Aha! The adorable little nephew of the orange family. The clementine, named after a French missionary who supposedly discovered the variety in Algeria, is actually a hybrid of a sweet orange (something like a valencia or navel, though we don’t know exactly which one) and the mandarin. Clementines are very tiny, very sweet, seedless, and have a fantastically loose skin and minimal pith, making them easy to peel (no tools required, besides maybe a sharp fingernail to get started), and ideal for eating.",
-            discount: "5",
-            url: "https://modernfarmer.com/wp-content/uploads/2018/01/clementine.jpg",
-            category: "fruits",
+              "Cherry tomatoes may not be very large, but they pack a sweet, summery punch. They’re typically red, but can also be yellow, green, or even black. Cherry tomatoes are usually smaller than grape tomatoes and have a softer texture.",
+            discount: "0",
+            url: "https://befreshcorp.net/wp-content/uploads/2017/07/product-packshot-CherryTtomatoes.jpg",
+            category: "vegetables",
             reviews: [],
-            type: "orange",
+            type: "tomato",
           },
           {
-            name: "Tangelo",
-            price: "190",
+            name: "Heirloom Tomatoes",
+            price: "220",
             description:
-              "The tangelo is most easily identified by its reddish skin and the protruding nipple-like thing on the stem end. It’s extremely juicy and sweet, with a very low amount of acid, which makes it an excellent juicing fruit, but the skin is very tight and hard to peel, which makes it trickier to eat raw.",
+              "The term “heirloom” refers to how tomatoes (and plenty of other fruits and vegetables) are bred. Unlike hybrid tomatoes, which come from cross-bred tomato strains, heirloom tomatoes can be traced down a single genetic line. Basically, they’re purebreds. Heirloom tomatoes are prized for their superior taste and texture, and the come in a variety of colors including orange and deep purple. However, that single strain means that heirloom tomatoes have a shorter shelf life and much less resistance to disease than hybrids.",
             discount: "0",
-            url: "https://modernfarmer.com/wp-content/uploads/2018/02/tangelo.jpg",
-            category: "fruits",
+            url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCsL5kUvIXSlmsdMk9qtqOtXyM3Et6WlKZKw&usqp=CAU",
+            category: "vegetables",
             reviews: [],
-            type: "orange",
+            type: "tomato",
           },
           {
-            name: "Cara Cara Orange",
-            price: "190",
+            name: "Beefsteak Tomatoes",
+            price: "210",
             description:
-              "The prettiest of all oranges is the cara cara. It’s a type of navel orange – it’s sometimes labeled “pink navel” or “red navel” – and was discovered in Venezuela in 1976. It is an all-time great orange, extremely sweet but with a complex sort of berry flavor behind it. And best of all is the color: a luscious pink.",
+              "Beefsteak tomatoes are some of the largest cultivated tomatoes around, with a meaty texture and intense, classic-tomato flavor. They're typically red or pink, certain varieties of beefsteak tomatoes yield purple, black, or yellow fruit. Thanks to their thick consistency and compact seed cavities, beefsteak tomatoes hold up well when sliced, making them perfect for sandwiches.",
             discount: "0",
-            url: "https://moutoncitrus.co.za/wp-content/uploads/2014/11/cara-caras.jpg",
-            category: "fruits",
+            url: "https://geturbanleaf.com/wp-content/uploads/2020/08/1000-Tomato.png",
+            category: "vegetables",
             reviews: [],
-            type: "orange",
+            type: "tomato",
           },
           {
-            name: "Blood Orange",
-            price: "185",
+            name: "Plum Tomatoes",
+            price: "210",
             description:
-              "The blood orange is probably a natural mutation of the regular orange; it has a deep, sinister red flesh which indicates a high level of antioxidants known as anthocyanins. (Most oranges do not have these.) There are a few different types of blood oranges, the most common of which are the moro and sanguinello. Sometimes you’ll be able to see dark blotches on the skin that indicate the deep red within, sometimes not. Blood oranges are not as sweet as the cara cara, but they do have an appealing sort of raspberry flavor to them. Also, their juice is very pretty.",
+              "Also known as processing or paste tomatoes, plum tomatoes have an almost cylindrical shape and few seeds, making them perfect for preserving. As a result, they’re popular in premade sauces and tomato paste, or diced and canned (Roma tomatoes are a plum variety). Smaller plum tomatoes are often called grape tomatoes.",
             discount: "0",
-            url: "https://askthefoodgeek.com/wp-content/uploads/2017/02/Blood-oranges-in-season-1.jpg",
-            category: "fruits",
+            url: "https://freshoffdfarm.com/wp-content/uploads/2020/05/plum-tomatoes.jpg",
+            category: "vegetables",
             reviews: [],
-            type: "orange",
+            type: "tomato",
           },
           {
-            name: "Bitter Orange",
-            price: "180",
+            name: "Yellow Tomatoes",
+            price: "230",
             description:
-              "An entirely different lineage, but also derived from a hybrid of the pomelo and the mandarin, the bitter orange is sometimes known as a Seville orange or sour orange. Because it’s completely lacking in sweetness, it’s not generally eaten or juiced for standalone drinking. Bitter orange’s peel is extraordinarily fragrant and is often used as a flavoring or spice in its own right; in the UK, it’s common to see it in marmalade. In Europe, this orange is often used to flavor beers, like the Belgian witbier, or as a dessert spice along with clove and cinnamon. The juice is used as a flavoring or marinating ingredient throughout Latin America, especially with pork, as in the Mexican cochinita pibil.",
+              "A number of tomato varieties, both heirloom and hybrid, produce yellow fruit. Yellow tomatoes are less acidic than their red counterparts and have a different nutritional value: for example, yellow tomatoes are high in folate, but have less vitamin C than red ones.",
             discount: "0",
-            url: "https://modernfarmer.com/wp-content/uploads/2018/01/bitter.jpg",
-            category: "fruits",
+            url: "https://oexmarkets.com/wp-content/uploads/2020/03/Yellow-Cherry-Tomatoes.jpg",
+            category: "vegetables",
             reviews: [],
-            type: "orange",
+            type: "tomato",
           },
           {
-            name: "Bergamot Orange",
-            price: "180",
+            name: "Green Tomatoes",
+            price: "210",
             description:
-              "What? This is an orange? Sure is. The bergamot orange, an extract of which is used in Earl Grey tea, is actually a hybrid of the lemon and the bitter orange. It’s usually lime-green or yellowish in color, sometimes smooth and sometimes sort of lumpy, and as with the bitter orange, it’s chock full of seeds. The juice is very, very sour.",
+              "Several tomato varieties, like the heirloom green zebra or Cherokee green, produce green fruit. However, green tomatoes can also describe unripened red tomatoes which are purposefully harvested early for techniques such breading and frying or pickling.",
             discount: "0",
-            url: "https://modernfarmer.com/wp-content/uploads/2018/01/bergamot.jpg",
-            category: "fruits",
+            url: "https://cen.acs.org/content/dam/cen/92/18/09218-scitech1-tomatocxd.jpg",
+            category: "vegetables",
             reviews: [],
-            type: "orange",
+            type: "tomato",
           },
           {
-            name: "Lima Orange",
-            price: "190",
+            name: "Campari Tomatoes",
+            price: "250",
             description:
-              "One of the more common examples of what’s called an “acidless orange,” the lima is grown extensively in Brazil. It does not, of course, completely lack acid, but the levels are very low, making this one of the sweeter oranges out there. The flesh is fairly light in color, and it has a thick peel along with some seeds.",
+              "Also known as tomatoes on the vine, campari tomatoes fall somewhere between cherry and grape tomatoes in size. These hybrids have a deep red hue, low acidity, super sweet flavor, and a juicy, forgiving texture.",
             discount: "0",
-            url: "https://www.lima-europe.eu/wp-content/uploads/2017/03/shutterstock_571355584.jpg",
-            category: "fruits",
+            url: "https://ipcdn.freshop.com/resize?url=https://images.freshop.com/146350/27470c081fd8b542d8913b8021133402_large.png&width=512&type=webp&quality=40",
+            category: "vegetables",
             reviews: [],
-            type: "orange",
+            type: "tomato",
           },
           {
-            name: "Heirloom Navel Orange",
-            price: "200",
+            name: "Pear Tomatoes",
+            price: "240",
             description:
-              "So, this is a weird one. When you hear “heirloom navel,” you’d expect an old variety of the navel orange, perhaps long forgotten. That isn’t really the case; a New York Times article showed that, mostly, heirloom navels are Washington navels, the same variety as other ordinary navels. Because there isn’t really a rule about what is qualifies an orange as “heirloom,” the label isn’t necessarily reliable. But some growers take the name seriously, only using rootstock from sour orange trees, the same way they were grown in the early years of California citrus. This produces a lower yield than using a sweet orange rootstock, but the flavor can be superior. Heirloom navels, at their best, are superbly flavorful; not really different in profile from a regular navel, but with higher sweetness and acidity levels.",
+              "Pear tomatoes are an heirloom variety known for their small, pear-shaped fruit. They’re sweet and typically yellow, but can also be red or orange.",
             discount: "0",
-            url: "https://cdn.shopify.com/s/files/1/0336/7167/5948/products/image-of-heirloom-navel-oranges-fruit-14763945525292_600x600.jpg?v=1616942190",
-            category: "fruits",
+            url: "https://cdn.shopify.com/s/files/1/0871/0950/products/yellowpearbeams.jpg?v=1572751966",
+            category: "vegetables",
             reviews: [],
-            type: "orange",
+            type: "tomato",
+          },
+          {
+            name: "Brandywine Tomatoes",
+            price: "245",
+            description:
+              "Brandywine tomatoes are a variety of beefsteak tomatoes with large, pink fruit and massive flavor. They’re one of the most beloved heirloom varieties and some of the best-tasting tomatoes around. You’ll want to enjoy these fresh, like in a Caprese salad or classic bruschetta.",
+            discount: "0",
+            url: "https://cdn.shopify.com/s/files/1/0871/0950/products/yellowpearbeams.jpg?v=1572751966",
+            category: "vegetables",
+            reviews: [],
+            type: "tomato",
+          },
+          {
+            name: "Cherokee Purple Tomatoes",
+            price: "245",
+            description:
+              "Another heirloom beefsteak variety, Cherokee purple tomatoes have a distinctive appearance thanks to their dark flesh and clear skin. They’re dense, juicy, and best enjoyed raw and fresh, so go ahead and slice them up for a summer salad.",
+            discount: "0",
+            url: "https://cdn.shopify.com/s/files/1/0871/0950/products/CherokeePurple2_1024x1024.gif?v=1579645395",
+            category: "vegetables",
+            reviews: [],
+            type: "tomato",
           },
         ],
         { ordered: false }
