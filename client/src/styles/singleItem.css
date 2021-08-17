@@ -1,0 +1,61 @@
+.single-item {
+  width: inherit;
+  display: flex;
+}
+.sngitem {
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid black;
+}
+.single-item-container {
+  width: inherit;
+  justify-self: center;
+}
+.single-item-img {
+  height: 400px;
+  width: 400px;
+}
+.single-item-img img {
+  height: inherit;
+  width: inherit;
+}
+.single-item-info {
+  width: 100%;
+}
+.single-item-info p {
+  width: 90%;
+}
+.single-item-info-upper {
+  display: flex;
+  justify-content: flex-start;
+}
+.single-item-btns {
+  display: flex;
+  max-width: 200px;
+  margin-left: 100px;
+  flex-wrap: wrap;
+  align-content: space-around;
+}
+.single-item-btns button {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+.single-item-price .old-price {
+  margin-top: 10px;
+  margin-bottom: 0;
+  font-size: 18px;
+  margin-left: 3px;
+}
+.buy-btn {
+  height: 50px;
+  width: 150px;
+  font-size: 30px;
+  background-color: rgb(202, 62, 62);
+}
+.buy-btn:hover {
+  background-color: rgb(216, 139, 139);
+}
+.buy-btn:active {
+  background-color: rgb(138, 64, 64) !important;
+  transform: translateY(2px);
+}

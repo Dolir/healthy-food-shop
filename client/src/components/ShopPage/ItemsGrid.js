@@ -18,17 +18,25 @@ function ItemsGrid({ filters }) {
   const [page, setPage] = React.useState(`0`);
   const dispatch = useDispatch();
   const limit = 12;
+
   React.useEffect(() => {
-    dispatch(getItemsCount());
+    dispatch(getItemsCount({ filters: filters }));
     setItemsCount(items.count);
-    dispatch(getItems({ sort: option, limit: limit }));
+    dispatch(getItems({ sort: option, limit: limit, filters: filters }));
     setPage("0");
   }, [items.count, option, filters]);
   function handlePages(e) {
     const count = e.target.attributes[0].value;
-    console.log(page);
+
     if (count === page) return;
-    dispatch(getItems({ sort: option, limit: limit, skip: limit * count }));
+    dispatch(
+      getItems({
+        sort: option,
+        limit: limit,
+        skip: limit * count,
+        filters: filters,
+      })
+    );
     setPage(count);
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera

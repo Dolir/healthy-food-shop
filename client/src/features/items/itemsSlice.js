@@ -8,19 +8,28 @@ const initialState = {
 };
 export const getItems = createAsyncThunk("items/getItems", async (options) => {
   if (options) {
+    const filters = JSON.stringify(options.filters);
+
     const response = await axios.get(
-      `/api/items?limit=${options.limit}&sort=${options.sort}&skip=${options.skip}`
+      `/api/items?limit=${options.limit}&sort=${options.sort}&skip=${options.skip}&filters=${filters}`
     );
     return response.data;
   }
   const response = await axios.get("/api/items");
   return response.data;
 });
-
+export const getSingleItem = createAsyncThunk(
+  "items/getSingleItem",
+  async (id) => {
+    const response = await axios.get(`/api/items/id/${id}`);
+    return response.data;
+  }
+);
 export const getItemsCount = createAsyncThunk(
   "items/getItemsCount",
-  async () => {
-    const response = await axios.get("/api/items/count");
+  async (options) => {
+    const filters = JSON.stringify(options.filters);
+    const response = await axios.get(`/api/items/count?filters=${filters}`);
     return response.data;
   }
 );
@@ -53,9 +62,13 @@ export const itemsSlice = createSlice({
       })
       .addCase(getMinPrice.fulfilled, (state, action) => {
         state.priceRange.min = parseInt(action.payload.price);
+      })
+      .addCase(getSingleItem.fulfilled, (state, action) => {
+        state.singleItem = action.payload;
       });
   },
 });
+export const selectSingleItem = (state) => state.items.singleItem;
 export const selectPriceRange = (state) => state.items.priceRange;
 export const selectItems = (state) => state.items;
 export default itemsSlice.reducer;

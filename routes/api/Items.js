@@ -6,6 +6,11 @@ const mongoose = require("mongoose");
 router.get("/", (req, res) => {
   const { limit } = req.query;
   const { skip } = req.query;
+  let filters;
+  if (req.query.filters !== "undefined") {
+    filters = JSON.parse(req.query.filters);
+  }
+
   let { sort } = req.query;
   switch (sort) {
     case "Alphabet":
@@ -17,19 +22,53 @@ router.get("/", (req, res) => {
     case "Price(low to high)":
       sort = { price: 1 };
       break;
-
     default:
       sort = { name: 1 };
       break;
   }
-  Item.find()
-    .sort(sort)
-    .skip(parseInt(skip))
-    .limit(parseInt(limit))
-    .then((items) => res.json(items));
+  if (filters) {
+    Item.find({
+      price: filters.maxprice
+        ? { $gte: filters.minprice, $lte: filters.maxprice }
+        : { $ne: undefined },
+      category:
+        filters.category.length !== 0 ? filters.category : { $ne: undefined },
+      type: filters.type.length !== 0 ? filters.type : { $ne: undefined },
+      discount:
+        filters.additional.length !== 0 ? { $gt: "0" } : { $ne: undefined },
+    })
+      .sort(sort)
+      .skip(parseInt(skip))
+      .limit(parseInt(limit))
+      .then((items) => res.json(items));
+  } else {
+    Item.find({
+      price: filters
+        ? { $gte: filters.minprice, $lte: filters.maxprice }
+        : { $ne: undefined },
+      category: filters ? filters.category : { $ne: undefined },
+      type: filters ? filters.type : { $ne: undefined },
+      discount: filters ? { $gt: "0" } : { $ne: undefined },
+    })
+      .sort(sort)
+      .skip(parseInt(skip))
+      .limit(parseInt(limit))
+      .then((items) => res.json(items));
+  }
 });
+
 router.get("/count", (req, res) => {
-  Item.countDocuments().then((count) => res.json({ count: count }));
+  const filters = JSON.parse(req.query.filters);
+  Item.countDocuments({
+    price: filters.maxprice
+      ? { $gte: filters.minprice, $lte: filters.maxprice }
+      : { $ne: undefined },
+    category:
+      filters.category.length !== 0 ? filters.category : { $ne: undefined },
+    type: filters.type.length !== 0 ? filters.type : { $ne: undefined },
+    discount:
+      filters.additional.length !== 0 ? { $gt: "0" } : { $ne: undefined },
+  }).then((count) => res.json({ count: count }));
 });
 router.get("/maxprice", (req, res) => {
   Item.findOne({}, { price: 1, _id: 0 })
@@ -48,6 +87,9 @@ router.get("/reviews", (req, res) => {
   Item.find({}, { reviews: 1, _id: 0 })
     .limit(parseInt(limit))
     .then((reviews) => res.json(reviews));
+});
+router.get("/id/:id", (req, res) => {
+  Item.findOne({ _id: req.params.id }).then((item) => res.json(item));
 });
 // router.post("/reviews", (req, res) => {
 //   console.log(req.body);

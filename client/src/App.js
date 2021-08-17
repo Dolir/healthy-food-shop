@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import Header from "./components/Header";
 import Shop from "./components/ShopPage/Shop";
+import SingleItem from "./components/ShopPage/SingleItem";
 import Contacts from "./components/Contacts";
 import Account from "./components/Account";
 function App() {
@@ -13,6 +14,12 @@ function App() {
         <Header />
         <Switch>
           <Route path="/shop/page/:page">
+            <Shop />
+          </Route>
+          <Route path="/shop/id/:id">
+            <SingleItem />
+          </Route>
+          <Route path="/shop">
             <Shop />
           </Route>
           <Route path="/contacts">

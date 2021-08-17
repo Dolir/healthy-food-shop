@@ -7,11 +7,17 @@ import {
   getMinPrice,
 } from "../../features/items/itemsSlice";
 import { useSelector, useDispatch } from "react-redux";
-function Filter({ Filters, setFilters }) {
+import { Link } from "react-router-dom";
+function Filter({ setFilters }) {
   const priceRange = useSelector(selectPriceRange);
-  const [value, setValue] = React.useState([priceRange.min, priceRange.max]);
+  const [options, setOptions] = React.useState({
+    min: priceRange.min,
+    max: priceRange.max,
+    category: [],
+    type: [],
+    additional: [],
+  });
   const dispatch = useDispatch();
-
   React.useEffect(() => {
     dispatch(getMaxPrice());
     dispatch(getMinPrice());
@@ -20,19 +26,119 @@ function Filter({ Filters, setFilters }) {
     handleSlide([priceRange.min, priceRange.max]);
   }, [priceRange]);
   function handleSlide(data) {
-    let result = [parseInt(data[0]), parseInt(data[1])];
-    console.log(result);
-    setValue(result);
+    setOptions((prev) => ({
+      ...prev,
+      min: parseInt(data[0]),
+      max: parseInt(data[1]),
+    }));
   }
-  function handleChange(e) {
+  function handlePrice(e) {
     if (e.target.value === "") {
       return;
     }
     if (e.target.name === "min") {
-      setValue((prev) => [e.target.value, prev[1]]);
+      setOptions((prev) => ({ ...prev, min: e.target.value }));
     } else {
-      setValue((prev) => [prev[0], e.target.value]);
+      setOptions((prev) => ({ ...prev, max: e.target.value }));
     }
+  }
+  function handleSubmit() {
+    setFilters({
+      maxprice: options.max,
+      minprice: options.min,
+      category: options.category,
+      type: options.type,
+      additional: options.additional,
+    });
+  }
+  function handleClear() {
+    setOptions({
+      min: priceRange.min,
+      max: priceRange.max,
+      category: [],
+      type: [],
+      additional: [],
+    });
+    setFilters({
+      minprice: priceRange.min,
+      maxprice: priceRange.max,
+      category: [],
+      type: [],
+      additional: [],
+    });
+    const cbs = document.querySelectorAll('input[type="checkbox"]');
+    cbs.forEach((cb) => {
+      cb.checked = false;
+    });
+  }
+  function handleChange(e) {
+    if (e.target.nodeName === "INPUT") {
+    } else {
+      if (!e.target.children[0].checked) {
+        switch (
+          e.target.parentElement.previousSibling.innerText.toLowerCase()
+        ) {
+          case "category":
+            setOptions((prev) => ({
+              ...prev,
+              category: [...prev.category, e.target.attributes.value.value],
+            }));
+            break;
+          case "type":
+            setOptions((prev) => ({
+              ...prev,
+              type: [...prev.type, e.target.attributes.value.value],
+            }));
+            break;
+          case "additional":
+            setOptions((prev) => ({
+              ...prev,
+              additional: [...prev.additional, e.target.attributes.value.value],
+            }));
+            break;
+          default:
+            setOptions((prev) => ({ ...prev }));
+            break;
+        }
+      } else {
+        switch (
+          e.target.parentElement.previousSibling.innerText.toLowerCase()
+        ) {
+          case "category":
+            setOptions((prev) => ({
+              ...prev,
+              category: prev.category.filter(
+                (x) => x !== e.target.attributes.value.value
+              ),
+            }));
+            break;
+          case "type":
+            setOptions((prev) => ({
+              ...prev,
+              type: prev.type.filter(
+                (x) => x !== e.target.attributes.value.value
+              ),
+            }));
+            break;
+          case "additional":
+            setOptions((prev) => ({
+              ...prev,
+              additional: prev.additional.filter(
+                (x) => x !== e.target.attributes.value.value
+              ),
+            }));
+            break;
+          default:
+            setOptions((prev) => ({ ...prev }));
+            break;
+        }
+      }
+      e.target.children[0].checked = e.target.children[0].checked
+        ? false
+        : true;
+    }
+    // // console.log(e.target.checked);
+    // console.log(e.target.value);
   }
   return (
     <div className="filter">
@@ -44,8 +150,8 @@ function Filter({ Filters, setFilters }) {
             <input
               type="number"
               name="min"
-              value={value[0]}
-              onChange={handleChange}
+              value={options.min}
+              onChange={handlePrice}
               placeholder="hey"
             />
           </span>
@@ -54,8 +160,8 @@ function Filter({ Filters, setFilters }) {
             <input
               type="number"
               name="max"
-              value={value[1]}
-              onChange={handleChange}
+              value={options.max}
+              onChange={handlePrice}
             />
           </span>
         </div>
@@ -64,7 +170,7 @@ function Filter({ Filters, setFilters }) {
             min: priceRange.min,
             max: priceRange.max,
           }}
-          start={[value[0], value[1]]}
+          start={[options.min, options.max]}
           onChange={handleSlide}
           connect
         />
@@ -72,45 +178,53 @@ function Filter({ Filters, setFilters }) {
       <div className="filter-category">
         <h4>Category</h4>
         <ul>
-          <li>
-            <input type="checkbox" defaultChecked />
-            All
-          </li>
-          <li>
+          <li onClick={handleChange} value="fruits">
             <input type="checkbox" />
             Fruits
           </li>
-          <li>
+          <li onClick={handleChange} value="vegetables">
             <input type="checkbox" />
             Vegetables
           </li>
         </ul>
       </div>
       <div className="filter-type">
-        <h4> Type</h4>
+        <h4>Type</h4>
         <ul>
-          <li>
-            <input type="checkbox" defaultChecked />
-            All
-          </li>
-          <li>
+          <li onClick={handleChange} value="apple">
             <input type="checkbox" />
             Apple
           </li>
-          <li>
+          <li onClick={handleChange} value="orange">
             <input type="checkbox" />
             Orange
+          </li>
+          <li onClick={handleChange} value="tomato">
+            <input type="checkbox" />
+            Tomato
           </li>
         </ul>
       </div>
       <div className="filter-checkboxes">
         <h4>Additional</h4>
         <ul>
-          <li>
+          <li onClick={handleChange} value="onsale">
             <input type="checkbox" />
             On sale
           </li>
         </ul>
+      </div>
+      <div className="filter-btns">
+        <Link to="/shop/page/1">
+          <button id="show-btn" onClick={handleSubmit}>
+            Show
+          </button>
+        </Link>
+        <Link to="/shop/page/1">
+          <button id="clear-btn" onClick={handleClear}>
+            Clear
+          </button>
+        </Link>
       </div>
     </div>
   );
