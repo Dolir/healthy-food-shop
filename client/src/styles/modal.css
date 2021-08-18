@@ -1,0 +1,77 @@
+.modal-container {
+  position: fixed;
+  margin-top: 0;
+  z-index: 10;
+  height: 100vh;
+  overflow: auto;
+  width: 100vw;
+  top: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.459);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  transition-duration: 0.2s;
+}
+.danger {
+  color: rgb(189, 44, 44);
+  font-weight: bold;
+}
+.modal {
+  background-color: rgb(255, 255, 255);
+  color: black;
+  width: 600px;
+  height: auto;
+  padding-bottom: 20px;
+  box-shadow: 0 0px 4px rgba(0, 0, 0, 0.541);
+  border-radius: 5px;
+}
+.modal-header h2 {
+  margin: 0;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.335);
+}
+.modal-header button {
+  background-color: rgb(146, 146, 146);
+  border: 0;
+  color: black;
+  font-size: 25px;
+  border-radius: 5px;
+  margin: 8px;
+  width: 30px;
+}
+.modal-form {
+  width: 80%;
+}
+.modal-form div {
+  margin-top: 10px;
+  width: 100%;
+}
+.modal-form div label {
+  width: 100%;
+}
+.modal-form div input {
+  height: 30px;
+  width: 100%;
+}
+.modal-form button {
+  font-size: large;
+  border: 0;
+  background-color: rgba(0, 0, 0, 0.541);
+  height: 30px;
+  border-radius: 5px;
+  color: white;
+  width: 100%;
+}
+.modal-dialog {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

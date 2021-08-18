@@ -7,7 +7,15 @@ import Shop from "./components/ShopPage/Shop";
 import SingleItem from "./components/ShopPage/SingleItem";
 import Contacts from "./components/Contacts";
 import Account from "./components/Account";
+import { loadUser } from "./features/auth/authSlice";
+import Cart from "./components/Cart";
+import Orders from "./components/Orders";
+import { useDispatch } from "react-redux";
 function App() {
+  const dispatch = useDispatch();
+  React.useEffect(() => {
+    dispatch(loadUser());
+  }, []);
   return (
     <div className="App">
       <Router>
@@ -21,6 +29,12 @@ function App() {
           </Route>
           <Route path="/shop">
             <Shop />
+          </Route>
+          <Route path="/cart">
+            <Cart />
+          </Route>
+          <Route path="/orders">
+            <Orders />
           </Route>
           <Route path="/contacts">
             <Contacts />

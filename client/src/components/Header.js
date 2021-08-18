@@ -1,12 +1,32 @@
-import React from "react";
+import React, { Fragment } from "react";
 import logo from "../images/logoOrange.png";
 import "../styles/header.css";
+import "../styles/modal.css";
 import Searchbar from "./Searchbar";
 import cartIcon from "../images/cart.png";
 import { NavLink, useLocation } from "react-router-dom";
-
+import Logout from "./Auth/Logout";
+import RegisterModal from "./Auth/RegisterModal";
+import LoginModal from "./Auth/LoginModal";
+import { useSelector } from "react-redux";
 function Header() {
   const { pathname } = useLocation();
+  const auth = useSelector((state) => state.auth);
+  const authLinks = (
+    <div className="auth">
+      <NavLink to="/orders" className="navbar-text">
+        {auth.isAuthenticated ? "Orders" : ""}
+      </NavLink>
+      <Logout />
+    </div>
+  );
+  const guestLinks = (
+    <div className="auth">
+      <LoginModal className="Signin" />
+      <RegisterModal className="Signup" />
+    </div>
+  );
+
   return (
     <div className="header-container">
       <header>
@@ -39,12 +59,11 @@ function Header() {
         </div>
         <Searchbar />
         <div className="rightSide">
-          <div className="auth">
-            <a className="Signup">Sign up</a>
-            <a className="Signin">Sign in</a>
-          </div>
+          {auth.isAuthenticated ? authLinks : guestLinks}
           <div className="CartPart">
-            <img src={cartIcon} id="cartIcon" alt="cartIcon" />
+            <NavLink to="/cart">
+              <img src={cartIcon} id="cartIcon" alt="cartIcon" />
+            </NavLink>
           </div>
         </div>
       </header>

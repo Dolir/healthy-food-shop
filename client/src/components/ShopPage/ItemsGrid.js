@@ -15,7 +15,8 @@ function ItemsGrid({ filters }) {
   const [option, setOption] = React.useState("Alphabet");
   const [itemsCount, setItemsCount] = React.useState();
 
-  const [page, setPage] = React.useState(`0`);
+  const [page, setPage] = React.useState(pathname[pathname.length - 1]);
+  console.log(pathname[pathname.length - 1]);
   const dispatch = useDispatch();
   const limit = 12;
 
@@ -23,11 +24,13 @@ function ItemsGrid({ filters }) {
     dispatch(getItemsCount({ filters: filters }));
     setItemsCount(items.count);
     dispatch(getItems({ sort: option, limit: limit, filters: filters }));
-    setPage("0");
+    setPage(`${pathname[pathname.length - 1] - 1}`);
+    handlePages();
   }, [items.count, option, filters]);
   function handlePages(e) {
-    const count = e.target.attributes[0].value;
-
+    const count = e
+      ? e.target.attributes[0].value
+      : pathname[pathname.length - 1] - 1;
     if (count === page) return;
     dispatch(
       getItems({

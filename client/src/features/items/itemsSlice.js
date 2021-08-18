@@ -44,7 +44,11 @@ export const getMinPrice = createAsyncThunk("items/getMinPrice", async () => {
 export const itemsSlice = createSlice({
   name: "items",
   initialState,
-  reducers: {},
+  reducers: {
+    clearSingleItem: (state) => {
+      state.singleItem = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getItems.pending, (state) => {
@@ -71,4 +75,5 @@ export const itemsSlice = createSlice({
 export const selectSingleItem = (state) => state.items.singleItem;
 export const selectPriceRange = (state) => state.items.priceRange;
 export const selectItems = (state) => state.items;
+export const { clearSingleItem } = itemsSlice.actions;
 export default itemsSlice.reducer;

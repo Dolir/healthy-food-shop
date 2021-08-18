@@ -123,9 +123,7 @@ input[type="checkbox"] {
   width: auto;
   width: 150px;
 }
-.items-grid-list .item-name {
-  height: 40px;
-}
+
 .items-grid-list .item {
   margin-bottom: 5px;
   height: 350px;

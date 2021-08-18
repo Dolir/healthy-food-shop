@@ -1,6 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const items = require("./routes/api/Items");
+const user = require("./routes/api/Users");
+const auth = require("./routes/api/auth");
 const reviews = require("./routes/api/reviews");
 const config = require("config");
 const path = require("path");
@@ -18,6 +20,8 @@ mongoose
   .then(() => console.log("MongoDB connected!!!"))
   .catch((err) => console.log(err));
 
+app.use("/api/users", user);
+app.use("/api/auth", auth);
 app.use("/api/items", items);
 app.use("/api/reviews", reviews);
 if (process.env.NODE_ENV === "production") {

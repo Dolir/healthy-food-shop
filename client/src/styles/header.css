@@ -31,6 +31,7 @@ header {
   border-radius: 5px;
   height: 25px;
   outline: none;
+  border: 0;
 }
 .auth {
   font-size: bold;
@@ -44,6 +45,16 @@ header {
 #cartIcon {
   height: 30px;
 }
+.navbar-text {
+  margin-right: 20px;
+  text-decoration: none;
+  color: white;
+}
+.nav-link {
+  text-decoration: none;
+  color: white;
+  margin-right: 20px;
+}
 .CartPart {
   align-items: center;
   display: flex;
@@ -52,8 +63,10 @@ header {
 .Signup {
   margin-right: 20px;
   text-decoration: underline;
+  cursor: pointer;
 }
 .Signin {
+  cursor: pointer;
   margin-right: 10px;
   text-decoration: underline;
 }

@@ -1,3 +1,11 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+* {
+  box-sizing: border-box;
+}
 body {
   font-family: "Atkinson Hyperlegible", sans-serif;
   font-weight: 300;
@@ -19,7 +27,7 @@ body {
 }
 
 .App {
-  width: 1500px;
+  width: 1505px;
   min-height: 900px;
   box-shadow: 0 0px 11px rgba(0, 0, 0, 0.18);
 }
@@ -70,11 +78,11 @@ input[type="number"] {
 }
 @media only screen and (max-width: 1570px) {
   .App {
-    width: 1000px;
+    width: 1005px;
   }
 }
 @media only screen and (max-width: 1090px) {
   .App {
-    width: 750px;
+    width: 755px;
   }
 }
