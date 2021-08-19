@@ -5,6 +5,7 @@ const User = require("../../models/User");
 const config = require("config");
 const jwt = require("jsonwebtoken");
 const auth = require("../../middleware/auth");
+var ObjectId = require("mongodb").ObjectId;
 router.post("/", (req, res) => {
   const { email, password } = req.body;
   if (!email || !password) {
@@ -44,5 +45,36 @@ router.get("/user", auth, (req, res) => {
   User.findById(req.user.id)
     .select("-password")
     .then((user) => res.json(user));
+});
+router.post("/cart", (req, res) => {
+  User.updateOne(
+    { _id: req.body.userID },
+    { $push: { cart: req.body.item } }
+  ).then((response) => res.json(response));
+});
+router.delete("/cart", async (req, res) => {
+  console.log(req.query);
+  const { userID } = req.query;
+  const { itemID } = req.query;
+
+  const result = await User.aggregate([
+    { $match: { _id: ObjectId(userID) } },
+    {
+      $project: {
+        cart: {
+          $filter: {
+            input: "$cart",
+            as: "cart",
+            cond: { $ne: ["$$cart._id", itemID] },
+          },
+        },
+      },
+    },
+  ]);
+
+  User.updateOne({ _id: userID }, { $set: { cart: result[0].cart } }).then(
+    (response) => res.json(response)
+  );
+  result.map((x) => console.log(x.cart));
 });
 module.exports = router;

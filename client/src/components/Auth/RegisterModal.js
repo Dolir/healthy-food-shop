@@ -69,7 +69,6 @@ function RegisterModal() {
                 <input
                   type="text"
                   name="name"
-                  id="name"
                   placeholder="Your name"
                   onChange={onChange}
                 />
@@ -80,7 +79,6 @@ function RegisterModal() {
                 <input
                   type="text"
                   name="email"
-                  id="email"
                   placeholder="email"
                   onChange={onChange}
                 />{" "}
@@ -90,7 +88,6 @@ function RegisterModal() {
                 <input
                   type="password"
                   name="password"
-                  id="password"
                   placeholder="password"
                   onChange={onChange}
                 />

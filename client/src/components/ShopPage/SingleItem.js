@@ -23,7 +23,7 @@ function SingleItem() {
     };
   }, []);
   function handleToCart() {
-    dispatch(addCartItem(singleItem));
+    dispatch(addCartItem({ ...singleItem, quantity: 1 }));
   }
   function goBack() {
     history.goBack();

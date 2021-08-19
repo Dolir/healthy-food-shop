@@ -171,7 +171,13 @@ input[type="checkbox"] {
   margin-top: 0;
   margin-bottom: 8px;
 }
+.price-range-text span input::-webkit-outer-spin-button,
+.price-range-text span input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 .price-range-text span input {
+  -moz-appearance: textfield;
   margin-top: 5px;
   border-radius: 5px;
   outline: none;

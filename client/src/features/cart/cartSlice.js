@@ -1,23 +1,30 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+Storage.prototype.setObj = function (key, obj) {
+  return this.setItem(key, JSON.stringify(obj));
+};
+Storage.prototype.getObj = function (key) {
+  return JSON.parse(this.getItem(key));
+};
 const initialState = {
-  cartItems: [],
+  cartItems: localStorage.getObj("cart") ? localStorage.getObj("cart") : [],
   isLoading: null,
   count: 0,
 };
-export const getCartItems = createAsyncThunk(
-  "cart/getCartItems",
-  async (options) => {
-    if (options) {
-      const response = await axios.get(
-        `/api/items?limit=${options.limit}&sort=${options.sort}&skip=${
-          options.skip
-        }&filters=${""}`
-      );
-      return response.data;
-    }
-    const response = await axios.get("/api/items");
-    return response.data;
+export const addCartItem = createAsyncThunk(
+  "cart/addCartItem",
+  async (item) => {
+    await axios.post("/api/auth/cart", item);
+    return item.item;
+  }
+);
+export const clearCartItem = createAsyncThunk(
+  "cart/clearCartItem",
+  async (item) => {
+    await axios.delete(
+      `/api/auth/cart?itemID=${item.itemID}&userID=${item.userID}`
+    );
+    return item.itemID;
   }
 );
 export const getCartItemsCount = createAsyncThunk(
@@ -32,21 +39,42 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    clearCartItem: (state, action) => {
-      state.cartItems = null; //deleting by id
+    // clearCartItem: (state, action) => {
+    //   state.cartItems = state.cartItems.filter((x) => x._id !== action.payload);
+    //   localStorage.removeItem("cart");
+    //   localStorage.setObj(
+    //     "cart",
+    //     state.cartItems.filter((x) => x._id !== action.payload)
+    //   );
+    // },
+    clearCart: (state, action) => {
+      state.cartItems = [];
+      localStorage.removeItem("cart");
     },
-    addCartItem: (state, action) => {
-      state.cartItems.push(action.payload);
+    updateCartItemQuantity: (state, action) => {
+      const chosenIndex = state.cartItems.findIndex(
+        (x) => x._id === action.payload.id
+      );
+      state.cartItems[chosenIndex].quantity = parseInt(action.payload.quantity);
+      localStorage.removeItem("cart");
+      localStorage.setObj("cart", state.cartItems);
     },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getCartItems.pending, (state) => {
-        state.isLoading = true;
+      .addCase(addCartItem.fulfilled, (state, action) => {
+        localStorage.setObj("cart", [...state.cartItems, action.payload]);
+        state.cartItems.push(action.payload);
       })
-      .addCase(getCartItems.fulfilled, (state, action) => {
-        state.items = action.payload;
-        state.isLoading = false;
+      .addCase(clearCartItem.fulfilled, (state, action) => {
+        state.cartItems = state.cartItems.filter(
+          (x) => x._id !== action.payload
+        );
+        localStorage.removeItem("cart");
+        localStorage.setObj(
+          "cart",
+          state.cartItems.filter((x) => x._id !== action.payload)
+        );
       })
       .addCase(getCartItemsCount.fulfilled, (state, action) => {
         return { ...state, count: action.payload.count };
@@ -55,5 +83,5 @@ export const cartSlice = createSlice({
 });
 
 export const selectCart = (state) => state.cart;
-export const { clearCartItem, addCartItem } = cartSlice.actions;
+export const { updateCartItemQuantity, clearCart } = cartSlice.actions;
 export default cartSlice.reducer;

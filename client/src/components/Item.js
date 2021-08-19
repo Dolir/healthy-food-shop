@@ -1,12 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addCartItem } from "../features/cart/cartSlice";
 function Item({ item }) {
   const dispatch = useDispatch();
+
+  const auth = useSelector((state) => state.auth);
+
   function handleToCart() {
-    dispatch(addCartItem(item));
+    if (auth.isAuthenticated) {
+      dispatch(
+        addCartItem({ item: { ...item, quantity: 1 }, userID: auth.user._id })
+      );
+    } else {
+      dispatch(addCartItem({ item: { ...item, quantity: 1 } }));
+    }
   }
+
   return (
     <li className="item">
       <Link to={`/shop/id/${item._id}`} className="default-link">

@@ -140,5 +140,7 @@ export const tokenConfig = (getState) => {
   }
   return config;
 };
+
+export const selectUserID = (state) => state.auth.user._id;
 export const { userLoading, logoutSuccess } = authSlice.actions;
 export default authSlice.reducer;

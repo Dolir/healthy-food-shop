@@ -16,7 +16,7 @@ function ItemsGrid({ filters }) {
   const [itemsCount, setItemsCount] = React.useState();
 
   const [page, setPage] = React.useState(pathname[pathname.length - 1]);
-  console.log(pathname[pathname.length - 1]);
+
   const dispatch = useDispatch();
   const limit = 12;
 
