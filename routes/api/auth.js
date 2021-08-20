@@ -46,14 +46,44 @@ router.get("/user", auth, (req, res) => {
     .select("-password")
     .then((user) => res.json(user));
 });
-router.post("/cart", (req, res) => {
+// router.get("/cart", async (req, res) => {
+//   const result = await User.findOne({ _id: req.query.userID });
+//   res.json(result.cart);
+// });
+router.delete("/cartAll", (req, res) => {
   User.updateOne(
-    { _id: req.body.userID },
-    { $push: { cart: req.body.item } }
+    {
+      _id: req.query.userID,
+    },
+    { $set: { cart: [] } }
   ).then((response) => res.json(response));
 });
+router.post("/cart", async (req, res) => {
+  const secondCond = await User.findOne({
+    _id: req.body.userID,
+    "cart._id": req.body.item._id,
+  });
+  const thirdCond = secondCond
+    ? secondCond.cart.some((x) => x.quantity >= 1)
+    : null;
+  const reqItemQuant = secondCond
+    ? secondCond.cart.find((x) => x._id === req.body.item._id)
+    : null;
+  if (!thirdCond) {
+    User.updateOne(
+      { _id: req.body.userID },
+      { $push: { cart: req.body.item } }
+    ).then((response) => res.json(response));
+  } else {
+    let item = req.body.item;
+    item.quantity = reqItemQuant.quantity;
+    User.updateOne(
+      { _id: req.body.userID, cart: { $in: [item] } },
+      { $inc: { "cart.$.quantity": +1 } }
+    ).then((response) => res.json(response));
+  }
+});
 router.delete("/cart", async (req, res) => {
-  console.log(req.query);
   const { userID } = req.query;
   const { itemID } = req.query;
 
@@ -75,6 +105,20 @@ router.delete("/cart", async (req, res) => {
   User.updateOne({ _id: userID }, { $set: { cart: result[0].cart } }).then(
     (response) => res.json(response)
   );
-  result.map((x) => console.log(x.cart));
+});
+router.put("/cart", async (req, res) => {
+  const { userID, quantity, itemID } = req.query;
+  const secondCond = await User.findOne({
+    _id: userID,
+    "cart._id": itemID,
+  });
+  const reqItem = secondCond
+    ? secondCond.cart.find((x) => x._id === itemID)
+    : null;
+  let item = reqItem;
+  User.updateOne(
+    { _id: userID, cart: { $in: [item] } },
+    { $set: { "cart.$.quantity": parseInt(quantity) } }
+  ).then((response) => res.json(response));
 });
 module.exports = router;
