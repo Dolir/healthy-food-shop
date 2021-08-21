@@ -5,36 +5,39 @@ import {
   clearCartItem,
   updateCartItemQuantity,
   clearCart,
+  clearCartAsync,
+  clearCartItemAsync,
+  updateCartItemQuantityAsync,
   getCartItems,
 } from "../features/cart/cartSlice";
 import CartItem from "./CartItem";
 import "../styles/cart.css";
-import { loadUser } from "../features/auth/authSlice";
 function Cart() {
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const cart = useSelector(selectCart);
   React.useEffect(() => {
-    dispatch(loadUser());
-
+    if (auth.isAuthenticated) {
+      dispatch(getCartItems(auth.user._id));
+    }
     return () => {
       if (auth.isAuthenticated) {
         dispatch(clearCart());
       }
     };
-  }, [auth.isAuthenticated, cart.isLoading]);
+  }, [auth.isAuthenticated]);
 
   if (cart === null) return;
   function handleDeleteItem(id) {
     if (auth.isAuthenticated) {
-      dispatch(clearCartItem({ itemID: id, userID: auth.user._id }));
+      dispatch(clearCartItemAsync({ itemID: id, userID: auth.user._id }));
     } else {
       dispatch(clearCartItem({ itemID: id }));
     }
   }
   function handleDeleteAll() {
     if (auth.isAuthenticated) {
-      dispatch(clearCart(auth.user._id));
+      dispatch(clearCartAsync(auth.user._id));
     }
     dispatch(clearCart());
   }
@@ -43,19 +46,17 @@ function Cart() {
     cart.map((x) => array.push(parseInt(x.price) * x.quantity));
     return array.reduce((accu, current) => accu + current);
   }
-  function handleChange(e, itemID) {
+  function handleChange(value, itemID) {
     if (auth.isAuthenticated) {
       dispatch(
-        updateCartItemQuantity({
+        updateCartItemQuantityAsync({
           userID: auth.user._id,
           itemID: itemID,
-          quantity: e.target.value,
+          quantity: value,
         })
       );
     } else {
-      dispatch(
-        updateCartItemQuantity({ itemID: itemID, quantity: e.target.value })
-      );
+      dispatch(updateCartItemQuantity({ itemID: itemID, quantity: value }));
     }
   }
   // if (auth.isAuthenticated) {
@@ -99,11 +100,12 @@ function Cart() {
         <button onClick={handleDeleteAll}>Clear cart</button>
         <ul className="cartItems-list">
           {cart.cartItems.length !== 0 ? (
-            cart.cartItems.map((x) => (
+            cart.cartItems.map((x, key) => (
               <CartItem
                 item={x}
                 handleDeleteItem={handleDeleteItem}
                 handleChange={handleChange}
+                key={key}
               />
             ))
           ) : (

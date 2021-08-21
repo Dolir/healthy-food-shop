@@ -60,6 +60,18 @@ header {
   display: flex;
   align-content: center;
 }
+.CartPart i {
+  position: absolute;
+  background-color: orange;
+  width: 23px;
+  text-align: center;
+
+  margin-left: -5px;
+
+  border-radius: 50px;
+  color: white;
+  text-decoration: none;
+}
 .Signup {
   margin-right: 20px;
   text-decoration: underline;

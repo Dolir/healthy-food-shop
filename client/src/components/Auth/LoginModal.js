@@ -1,7 +1,6 @@
 import React from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
 import { login } from "../../features/auth/authSlice";
 import { clearErrors } from "../../features/auth/errorSlice";
 function LoginModal() {
@@ -46,9 +45,7 @@ function LoginModal() {
   return (
     <div>
       <div onClick={toggle} className="Signup">
-        <NavLink to="/" style={{ color: "white" }}>
-          Login
-        </NavLink>
+        Login
       </div>
       <div
         className="modal-container"

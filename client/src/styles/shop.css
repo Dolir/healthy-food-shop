@@ -129,6 +129,19 @@ input[type="checkbox"] {
   height: 350px;
   width: 200px;
 }
+.items-grid-list .item-modal {
+  position: absolute;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.376);
+  margin-left: 37px;
+  background-color: rgb(57, 134, 33);
+  color: white;
+  z-index: 5;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: large;
+  font-weight: bold;
+  margin-top: -37px;
+}
 .items-pages {
   border-top: 1px solid rgba(0, 0, 0, 0.18);
   display: flex;
@@ -204,12 +217,8 @@ input[type="checkbox"] {
   width: 20px !important;
   height: 25px !important;
 }
-.noUi-base {
-}
 .noUi-target {
   width: 70% !important;
-}
-.noUi-handle-upper {
 }
 .noUi-handle-lower {
   margin-right: 15px;

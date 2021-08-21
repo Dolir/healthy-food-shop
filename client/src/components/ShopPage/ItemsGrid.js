@@ -5,6 +5,7 @@ import {
   selectItems,
   getItems,
   getItemsCount,
+  clearItems,
 } from "../../features/items/itemsSlice";
 import { Link, useLocation } from "react-router-dom";
 import SortPopup from "./SortPopup";
@@ -26,6 +27,9 @@ function ItemsGrid({ filters }) {
     dispatch(getItems({ sort: option, limit: limit, filters: filters }));
     setPage(`${pathname[pathname.length - 1] - 1}`);
     handlePages();
+    return () => {
+      dispatch(clearItems());
+    };
   }, [items.count, option, filters]);
   function handlePages(e) {
     const count = e

@@ -73,6 +73,74 @@ function Filter({ setFilters }) {
   }
   function handleChange(e) {
     if (e.target.nodeName === "INPUT") {
+      if (e.target.checked) {
+        switch (
+          e.target.parentElement.parentElement.previousSibling.innerText.toLowerCase()
+        ) {
+          case "category":
+            setOptions((prev) => ({
+              ...prev,
+              category: [
+                ...prev.category,
+                e.target.parentElement.attributes.value.value,
+              ],
+            }));
+            break;
+          case "type":
+            setOptions((prev) => ({
+              ...prev,
+              type: [
+                ...prev.type,
+                e.target.parentElement.attributes.value.value,
+              ],
+            }));
+            break;
+          case "additional":
+            setOptions((prev) => ({
+              ...prev,
+              additional: [
+                ...prev.additional,
+                e.target.parentElement.attributes.value.value,
+              ],
+            }));
+            break;
+          default:
+            setOptions((prev) => ({ ...prev }));
+            break;
+        }
+      } else {
+        switch (
+          e.target.parentElement.parentElement.previousSibling.innerText.toLowerCase()
+        ) {
+          case "category":
+            setOptions((prev) => ({
+              ...prev,
+              category: prev.category.filter(
+                (x) => x !== e.target.parentElement.attributes.value.value
+              ),
+            }));
+            break;
+          case "type":
+            setOptions((prev) => ({
+              ...prev,
+              type: prev.type.filter(
+                (x) => x !== e.target.parentElement.attributes.value.value
+              ),
+            }));
+            break;
+          case "additional":
+            setOptions((prev) => ({
+              ...prev,
+              additional: prev.additional.filter(
+                (x) => x !== e.target.parentElement.attributes.value.value
+              ),
+            }));
+            break;
+          default:
+            setOptions((prev) => ({ ...prev }));
+            break;
+        }
+      }
     } else {
       if (!e.target.children[0].checked) {
         switch (

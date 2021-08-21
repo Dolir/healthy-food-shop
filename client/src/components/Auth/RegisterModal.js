@@ -2,7 +2,6 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../../features/auth/authSlice";
 import { clearErrors } from "../../features/auth/errorSlice";
-import { NavLink } from "react-router-dom";
 function RegisterModal() {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const error = useSelector((state) => state.error.error);
@@ -47,9 +46,7 @@ function RegisterModal() {
   return (
     <div>
       <div onClick={toggle} className="Signup">
-        <NavLink to="/" style={{ color: "white" }}>
-          Register
-        </NavLink>
+        Register
       </div>
 
       <div

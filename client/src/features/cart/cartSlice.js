@@ -11,21 +11,21 @@ const initialState = {
   isLoading: null,
   count: 0,
 };
-export const addCartItem = createAsyncThunk(
+export const addCartItemAsync = createAsyncThunk(
   "cart/addCartItem",
   async (item) => {
     await axios.post("/api/auth/cart", item);
     return item.item;
   }
 );
-// export const getCartItems = createAsyncThunk(
-//   "cart/getCartItems",
-//   async (userID) => {
-//     const response = await axios.get(`/api/auth/cart?userID=${userID}`);
-//     return response.data;
-//   }
-// );
-export const clearCartItem = createAsyncThunk(
+export const getCartItems = createAsyncThunk(
+  "cart/getCartItems",
+  async (userID) => {
+    const response = await axios.get(`/api/auth/cart?userID=${userID}`);
+    return response.data;
+  }
+);
+export const clearCartItemAsync = createAsyncThunk(
   "cart/clearCartItem",
   async (item) => {
     if (item.userID) {
@@ -36,17 +36,16 @@ export const clearCartItem = createAsyncThunk(
     return item.itemID;
   }
 );
-export const clearCart = createAsyncThunk("cart/clearCart", async (userID) => {
-  if (userID) {
+export const clearCartAsync = createAsyncThunk(
+  "cart/clearCart",
+  async (userID) => {
     await axios.delete(`/api/auth/cartAll?userID=${userID}`);
+    return;
   }
-
-  return;
-});
-export const updateCartItemQuantity = createAsyncThunk(
+);
+export const updateCartItemQuantityAsync = createAsyncThunk(
   "cart/updateCartItemQuantity",
   async (item) => {
-    console.log(item);
     if (item.userID) {
       await axios.put(
         `/api/auth/cart?itemID=${item.itemID}&userID=${item.userID}&quantity=${item.quantity}`
@@ -67,33 +66,52 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    // clearCartItem: (state, action) => {
-    //   state.cartItems = state.cartItems.filter((x) => x._id !== action.payload);
-    //   localStorage.removeItem("cart");
-    //   localStorage.setObj(
-    //     "cart",
-    //     state.cartItems.filter((x) => x._id !== action.payload)
-    //   );
-    // },
-    // clearCart: (state, action) => {
-    //   state.cartItems = [];
-    //   localStorage.removeItem("cart");
-    // },
-    // updateCartItemQuantity: (state, action) => {
-    //   const chosenIndex = state.cartItems.findIndex(
-    //     (x) => x._id === action.payload.id
-    //   );
-    //   state.cartItems[chosenIndex].quantity = parseInt(action.payload.quantity);
-    //   localStorage.removeItem("cart");
-    //   localStorage.setObj("cart", state.cartItems);
-    // },
+    addCartItem: (state, action) => {
+      const found = state.cartItems.find((x) => x._id === action.payload._id);
+      if (!found) {
+        localStorage.setObj("cart", [...state.cartItems, action.payload]);
+        state.cartItems.push(action.payload);
+        state.isLoading = false;
+      } else {
+        const chosenIndex = state.cartItems.findIndex(
+          (x) => x._id === action.payload._id
+        );
+        state.cartItems[chosenIndex].quantity += 1;
+        localStorage.removeItem("cart");
+        localStorage.setObj("cart", state.cartItems);
+        state.isLoading = false;
+      }
+    },
+    clearCartItem: (state, action) => {
+      state.cartItems = state.cartItems.filter(
+        (x) => x._id !== action.payload.itemID
+      );
+      localStorage.removeItem("cart");
+      localStorage.setObj(
+        "cart",
+        state.cartItems.filter((x) => x._id !== action.payload)
+      );
+    },
+    clearCart: (state, action) => {
+      state.cartItems = [];
+      localStorage.removeItem("cart");
+    },
+    updateCartItemQuantity: (state, action) => {
+      const chosenIndex = state.cartItems.findIndex(
+        (x) => x._id === action.payload.itemID
+      );
+
+      state.cartItems[chosenIndex].quantity = parseInt(action.payload.quantity);
+      localStorage.removeItem("cart");
+      localStorage.setObj("cart", state.cartItems);
+    },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(addCartItem.pending, (state, action) => {
+      .addCase(addCartItemAsync.pending, (state, action) => {
         state.isLoading = true;
       })
-      .addCase(addCartItem.fulfilled, (state, action) => {
+      .addCase(addCartItemAsync.fulfilled, (state, action) => {
         const found = state.cartItems.find((x) => x._id === action.payload._id);
         if (!found) {
           localStorage.setObj("cart", [...state.cartItems, action.payload]);
@@ -109,42 +127,39 @@ export const cartSlice = createSlice({
           state.isLoading = false;
         }
       })
-      .addCase(clearCartItem.pending, (state, action) => {
+      .addCase(clearCartItemAsync.pending, (state, action) => {
         state.isLoading = true;
       })
-      .addCase(clearCartItem.fulfilled, (state, action) => {
+      .addCase(clearCartItemAsync.fulfilled, (state, action) => {
         state.cartItems = state.cartItems.filter(
           (x) => x._id !== action.payload
         );
         localStorage.removeItem("cart");
-        localStorage.setObj(
-          "cart",
-          state.cartItems.filter((x) => x._id !== action.payload)
-        );
+        localStorage.setObj("cart", state.cartItems);
         state.isLoading = false;
       })
-      .addCase(clearCart.fulfilled, (state, action) => {
+      .addCase(clearCartAsync.fulfilled, (state, action) => {
         state.cartItems = [];
         localStorage.removeItem("cart");
         state.isLoading = false;
       })
-      // .addCase(getCartItems.pending, (state, action) => {
-      //   state.isLoading = true;
-      // })
-      // .addCase(getCartItems.fulfilled, (state, action) => {
-      //   state.cartItems = action.payload;
-      //   localStorage.removeItem("cart");
-      //   localStorage.setObj("cart", state.cartItems);
-      //   state.isLoading = false;
-      // })
-      .addCase(updateCartItemQuantity.pending, (state, action) => {
+      .addCase(getCartItems.pending, (state, action) => {
+        state.isLoading = true;
+      })
+      .addCase(getCartItems.fulfilled, (state, action) => {
+        state.cartItems = action.payload;
+        localStorage.removeItem("cart");
+        localStorage.setObj("cart", state.cartItems);
+        state.isLoading = false;
+      })
+      .addCase(updateCartItemQuantityAsync.pending, (state, action) => {
         if (state.cartItems.length !== 0) {
           state.isLoading = false;
         } else {
           state.isLoading = true;
         }
       })
-      .addCase(updateCartItemQuantity.fulfilled, (state, action) => {
+      .addCase(updateCartItemQuantityAsync.fulfilled, (state, action) => {
         if (state.cartItems.length !== 0) {
           const chosenIndex = state.cartItems.findIndex(
             (x) => x._id === action.payload.itemID
@@ -164,4 +179,6 @@ export const cartSlice = createSlice({
 });
 
 export const selectCart = (state) => state.cart;
+export const { clearCart, clearCartItem, addCartItem, updateCartItemQuantity } =
+  cartSlice.actions;
 export default cartSlice.reducer;

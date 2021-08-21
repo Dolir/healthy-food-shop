@@ -1,20 +1,26 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addCartItem } from "../features/cart/cartSlice";
+import { addCartItem, addCartItemAsync } from "../features/cart/cartSlice";
 function Item({ item }) {
   const dispatch = useDispatch();
-
+  const [modal, setModal] = React.useState(false);
   const auth = useSelector((state) => state.auth);
 
   function handleToCart() {
+    setModal(true);
+
     if (auth.isAuthenticated) {
       dispatch(
-        addCartItem({ item: { ...item, quantity: 1 }, userID: auth.user._id })
+        addCartItemAsync({
+          item: { ...item, quantity: 1 },
+          userID: auth.user._id,
+        })
       );
     } else {
-      dispatch(addCartItem({ item: { ...item, quantity: 1 } }));
+      dispatch(addCartItem({ ...item, quantity: 1 }));
     }
+    setTimeout(() => setModal(false), 3000);
   }
 
   return (
@@ -38,6 +44,14 @@ function Item({ item }) {
         </div>
       </Link>
       <div>
+        {
+          <div
+            className="item-modal"
+            style={modal ? { opacity: 1 } : { opacity: 0 }}
+          >
+            Added to cart
+          </div>
+        }
         <button className="tocart-btn" onClick={handleToCart}>
           TO CART
         </button>

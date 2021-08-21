@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import logo from "../images/logoOrange.png";
 import "../styles/header.css";
 import "../styles/modal.css";
@@ -12,6 +12,8 @@ import { useSelector } from "react-redux";
 function Header() {
   const { pathname } = useLocation();
   const auth = useSelector((state) => state.auth);
+  const cartItemsCount = useSelector((state) => state.cart.cartItems).length;
+
   const authLinks = (
     <div className="auth">
       <NavLink to="/orders" className="navbar-text">
@@ -63,6 +65,7 @@ function Header() {
           <div className="CartPart">
             <NavLink to="/cart">
               <img src={cartIcon} id="cartIcon" alt="cartIcon" />
+              <i>{cartItemsCount}</i>
             </NavLink>
           </div>
         </div>

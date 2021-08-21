@@ -48,6 +48,9 @@ export const itemsSlice = createSlice({
     clearSingleItem: (state) => {
       state.singleItem = null;
     },
+    clearItems: (state) => {
+      state.items = [];
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -75,5 +78,5 @@ export const itemsSlice = createSlice({
 export const selectSingleItem = (state) => state.items.singleItem;
 export const selectPriceRange = (state) => state.items.priceRange;
 export const selectItems = (state) => state.items;
-export const { clearSingleItem } = itemsSlice.actions;
+export const { clearSingleItem, clearItems } = itemsSlice.actions;
 export default itemsSlice.reducer;

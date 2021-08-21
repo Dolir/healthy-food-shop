@@ -28,12 +28,9 @@ router.post("/", (req, res) => {
           res.json({
             token: token,
             user: {
-              id: user.id,
+              _id: user.id,
               name: user.name,
               email: user.email,
-              reviews: user.reviews,
-              orders: user.orders,
-              cart: user.cart,
             },
           });
         }
@@ -46,10 +43,10 @@ router.get("/user", auth, (req, res) => {
     .select("-password")
     .then((user) => res.json(user));
 });
-// router.get("/cart", async (req, res) => {
-//   const result = await User.findOne({ _id: req.query.userID });
-//   res.json(result.cart);
-// });
+router.get("/cart", async (req, res) => {
+  const result = await User.findOne({ _id: req.query.userID });
+  res.json(result.cart);
+});
 router.delete("/cartAll", (req, res) => {
   User.updateOne(
     {

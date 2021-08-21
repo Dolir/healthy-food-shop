@@ -70,6 +70,15 @@
   color: white;
   width: 100%;
 }
+.modal-dialog a button {
+  font-size: large;
+  border: 0;
+  background-color: rgba(0, 0, 0, 0.541);
+  height: 30px;
+  border-radius: 5px;
+  color: white;
+  width: 100%;
+}
 .modal-dialog {
   width: 100%;
   display: flex;

@@ -7,13 +7,16 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import "../../styles/singleItem.css";
-import { addCartItem } from "../../features/cart/cartSlice";
+import CartModal from "../CartModal";
+import { addCartItem, addCartItemAsync } from "../../features/cart/cartSlice";
+import ItemReviews from "./ItemReviews";
 function SingleItem() {
   const params = useParams();
   const dispatch = useDispatch();
   const singleItem = useSelector(selectSingleItem);
+  const auth = useSelector((state) => state.auth);
   const history = useHistory();
-
+  const [modal, setModal] = React.useState(false);
   React.useEffect(() => {
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
@@ -23,7 +26,17 @@ function SingleItem() {
     };
   }, []);
   function handleToCart() {
-    dispatch(addCartItem({ ...singleItem, quantity: 1 }));
+    setModal(true);
+    if (auth.isAuthenticated) {
+      dispatch(
+        addCartItemAsync({
+          item: { ...singleItem, quantity: 1 },
+          userID: auth.user._id,
+        })
+      );
+    } else {
+      dispatch(addCartItem({ ...singleItem, quantity: 1 }));
+    }
   }
   function goBack() {
     history.goBack();
@@ -31,6 +44,7 @@ function SingleItem() {
   if (singleItem) {
     return (
       <div className="sngitem">
+        {modal ? <CartModal modal={modal} setModal={setModal} /> : ""}
         <div className="single-item-container">
           <button onClick={goBack}>go back</button>
           <div className="single-item">
@@ -60,7 +74,30 @@ function SingleItem() {
               <p>{singleItem.description}</p>
             </div>
           </div>
-          <div>{singleItem.reviews.map((x) => x.text)}</div>
+          <div className="single-reviews-container">
+            {auth.isAuthenticated ? (
+              <form>
+                <div>
+                  <div>
+                    <h3>Rating</h3>
+                    <input type="range" />
+                  </div>
+                  <div>
+                    <h3>Review</h3>
+                    <input type="text" />
+                  </div>
+                </div>
+              </form>
+            ) : (
+              <div>You need to log in to make reviews</div>
+            )}
+
+            <ul className="single-reviews-list">
+              {singleItem.reviews.map((x) => (
+                <ItemReviews review={x} />
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     );
