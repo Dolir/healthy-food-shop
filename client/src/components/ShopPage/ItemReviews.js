@@ -1,6 +1,6 @@
 import React from "react";
 
-function ItemReviews({ review }) {
+function ItemReviews({ review, userID, handleReviewDelete }) {
   const date = new Date(review.date);
   function starDisplay() {
     let white = review.rating;
@@ -40,6 +40,13 @@ function ItemReviews({ review }) {
   }
   return (
     <li className="single-review">
+      {review.author_id === userID ? (
+        <button onClick={() => handleReviewDelete(review._id)}>
+          &times; Delete
+        </button>
+      ) : (
+        ""
+      )}
       <h1>{review.author_name}</h1>
       <h1>{review.rating}/5</h1>
       <h2>{starDisplay()}</h2>

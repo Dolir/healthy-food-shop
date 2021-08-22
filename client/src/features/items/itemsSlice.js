@@ -41,6 +41,22 @@ export const getMinPrice = createAsyncThunk("items/getMinPrice", async () => {
   const response = await axios.get("/api/items/minprice");
   return response.data;
 });
+export const postReviews = createAsyncThunk(
+  "reviews/postReviews",
+  async (review) => {
+    axios.post("/api/items/reviews", review);
+    return review.review;
+  }
+);
+export const deleteReviews = createAsyncThunk(
+  "reviews/deleteReviews",
+  async (review) => {
+    axios.delete(
+      `/api/items/reviews?itemID=${review.itemID}&reviewID=${review.reviewID}`
+    );
+    return review.reviewID;
+  }
+);
 export const itemsSlice = createSlice({
   name: "items",
   initialState,
@@ -72,6 +88,22 @@ export const itemsSlice = createSlice({
       })
       .addCase(getSingleItem.fulfilled, (state, action) => {
         state.singleItem = action.payload;
+      })
+      .addCase(postReviews.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(postReviews.fulfilled, (state, action) => {
+        state.singleItem.reviews.push(action.payload);
+        state.isLoading = false;
+      })
+      .addCase(deleteReviews.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deleteReviews.fulfilled, (state, action) => {
+        state.singleItem.reviews = state.singleItem.reviews.filter(
+          (x) => x._id !== action.payload
+        );
+        state.isLoading = false;
       });
   },
 });

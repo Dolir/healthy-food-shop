@@ -88,6 +88,22 @@ router.get("/reviews", (req, res) => {
     .limit(parseInt(limit))
     .then((reviews) => res.json(reviews));
 });
+router.post("/reviews", (req, res) => {
+  const { itemID, review } = req.body;
+  Item.updateOne({ _id: itemID }, { $push: { reviews: review } }).then(
+    (response) => res.json(response)
+  );
+});
+router.delete("/reviews", async (req, res) => {
+  const { reviewID, itemID } = req.query;
+
+  const chosenItem = await Item.findOne({ _id: itemID }, { reviews: 1 });
+  const result = chosenItem.reviews.filter((x) => x._id !== reviewID);
+
+  Item.updateOne({ _id: itemID }, { $set: { reviews: result[0] } }).then(
+    (response) => res.json(response)
+  );
+});
 router.get("/id/:id", (req, res) => {
   Item.findOne({ _id: req.params.id }).then((item) => res.json(item));
 });

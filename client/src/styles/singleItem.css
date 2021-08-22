@@ -68,17 +68,96 @@
   transform: translateY(2px);
 }
 .single-reviews-list {
+  margin-top: 0;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.384);
   list-style: none;
 }
-.single-reviews-container form {
-  background-color: rgba(0, 0, 0, 0.253);
-  height: 500px;
+.single-reviews-form {
+  margin-top: 20px;
+  height: 320px;
   display: flex;
   justify-content: center;
-  align-items: center;
+  width: 100%;
 }
-.single-reviews-container form div {
+.single-reviews-form form {
+  padding: 10px;
+  height: inherit;
+  width: inherit;
+}
+.single-rating h3 {
+  margin-bottom: 0;
+}
+.single-rating {
+  height: 70px;
+  border-bottom: 1px solid black;
+}
+.single-text {
+  width: auto;
+}
+.single-reviews-form button {
+  margin-top: 10px;
+  font-size: 20px;
+  border-radius: 3px;
+  border: 0;
+  color: white;
+  background-color: rgb(127, 134, 130);
+}
+.single-reviews-form button:hover {
+  filter: brightness(90%);
+}
+.single-reviews-form button:active {
+  filter: brightness(70%);
+}
+.single-text textarea {
+  font-size: 20px;
+  padding-left: 5px;
+  width: 100%;
+  height: 100px;
+  resize: none;
+}
+.not-logged-reviews {
+  text-align: center;
+  margin: 10px 0;
+  margin-bottom: -8px;
+  font-size: 20px;
+  font-weight: bold;
+  color: rgba(128, 128, 128, 0.664);
+}
+.rate {
+  float: left;
+  height: 46px;
+}
+.rate:not(:checked) > input {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+  visibility: hidden;
+}
+.rate:not(:checked) > label {
+  float: right;
+  width: 1em;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 30px;
+  color: #ccc;
+}
+.rate:not(:checked) > label:before {
+  content: "★ ";
+}
+.rate > input:checked ~ label {
+  color: #ffc700;
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+  color: #deb217;
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+  color: #c59b08;
 }
 @media only screen and (max-width: 1090px) {
   .single-item {

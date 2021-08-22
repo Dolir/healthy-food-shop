@@ -28,40 +28,28 @@ export const getCartItems = createAsyncThunk(
 export const clearCartItemAsync = createAsyncThunk(
   "cart/clearCartItem",
   async (item) => {
-    if (item.userID) {
-      await axios.delete(
-        `/api/auth/cart?itemID=${item.itemID}&userID=${item.userID}`
-      );
-    }
+    axios.delete(`/api/auth/cart?itemID=${item.itemID}&userID=${item.userID}`);
+
     return item.itemID;
   }
 );
 export const clearCartAsync = createAsyncThunk(
   "cart/clearCart",
   async (userID) => {
-    await axios.delete(`/api/auth/cartAll?userID=${userID}`);
+    axios.delete(`/api/auth/cartAll?userID=${userID}`);
     return;
   }
 );
 export const updateCartItemQuantityAsync = createAsyncThunk(
   "cart/updateCartItemQuantity",
   async (item) => {
-    if (item.userID) {
-      await axios.put(
-        `/api/auth/cart?itemID=${item.itemID}&userID=${item.userID}&quantity=${item.quantity}`
-      );
-    }
+    axios.put(
+      `/api/auth/cart?itemID=${item.itemID}&userID=${item.userID}&quantity=${item.quantity}`
+    );
+
     return item;
   }
 );
-// export const getCartItemsCount = createAsyncThunk(
-//   "cart/getCartItemsCount",
-//   async (options) => {
-//     const filters = JSON.stringify(options.filters);
-//     const response = await axios.get(`/api/items/count?filters=${filters}`);
-//     return response.data;
-//   }
-// );
 export const cartSlice = createSlice({
   name: "cart",
   initialState,
@@ -153,28 +141,28 @@ export const cartSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(updateCartItemQuantityAsync.pending, (state, action) => {
-        if (state.cartItems.length !== 0) {
-          state.isLoading = false;
-        } else {
-          state.isLoading = true;
-        }
+        // const chosenIndex = state.cartItems.findIndex(
+        //   (x) => x._id === action.payload.itemID
+        // );
+        // state.cartItems[chosenIndex].quantity = parseInt(
+        //   action.payload.quantity
+        // );
+        // localStorage.removeItem("cart");
+        // localStorage.setObj("cart", state.cartItems);
+        state.isLoading = true;
       })
       .addCase(updateCartItemQuantityAsync.fulfilled, (state, action) => {
-        if (state.cartItems.length !== 0) {
-          const chosenIndex = state.cartItems.findIndex(
-            (x) => x._id === action.payload.itemID
-          );
-          state.cartItems[chosenIndex].quantity = parseInt(
-            action.payload.quantity
-          );
-          localStorage.removeItem("cart");
-          localStorage.setObj("cart", state.cartItems);
-        }
+        const chosenIndex = state.cartItems.findIndex(
+          (x) => x._id === action.payload.itemID
+        );
+        state.cartItems[chosenIndex].quantity = parseInt(
+          action.payload.quantity
+        );
+        localStorage.removeItem("cart");
+        localStorage.setObj("cart", state.cartItems);
+
         state.isLoading = false;
       });
-    //   .addCase(getCartItemsCount.fulfilled, (state, action) => {
-    //     return { ...state, count: action.payload.count };
-    //   });
   },
 });
 
