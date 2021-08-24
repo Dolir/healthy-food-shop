@@ -40,18 +40,23 @@ function ItemReviews({ review, userID, handleReviewDelete }) {
   }
   return (
     <li className="single-review">
-      {review.author_id === userID ? (
-        <button onClick={() => handleReviewDelete(review._id)}>
-          &times; Delete
-        </button>
-      ) : (
-        ""
-      )}
-      <h1>{review.author_name}</h1>
-      <h1>{review.rating}/5</h1>
-      <h2>{starDisplay()}</h2>
+      <div className="author-review-container">
+        <div className="author-rating-name">
+          <b>{review.author_name}</b>
+          <span>{starDisplay()}</span>{" "}
+        </div>
+
+        {review.author_id === userID ? (
+          <button onClick={() => handleReviewDelete(review._id)}>
+            <span>&times;</span>Delete
+          </button>
+        ) : (
+          ""
+        )}
+      </div>
+
       <p>{review.text}</p>
-      <h2>{date.toLocaleDateString()}</h2>
+      <h3>{date.toLocaleDateString()}</h3>
     </li>
   );
 }

@@ -61,6 +61,7 @@
   height: min-content;
   display: flex;
   justify-content: center;
+  margin-bottom: 20px;
 }
 .cart-content {
   width: 90%;
@@ -107,8 +108,8 @@
   display: flex;
   justify-content: flex-end;
 }
-.checkout button {
-  background-color: rgb(248, 195, 158);
+#checkout-button {
+  background-color: rgb(235, 138, 69);
   padding: 10px;
   font-size: 25px;
 }

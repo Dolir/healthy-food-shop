@@ -12,10 +12,19 @@ import {
 } from "../features/cart/cartSlice";
 import CartItem from "./CartItem";
 import "../styles/cart.css";
+import "../styles/checkout.css";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import CheckoutForm from "./CheckoutForm";
+const promise = loadStripe(
+  "pk_test_51JRd99EJ2lRaGUW3zwJ3l8brvsb9oqh9rYpdfU1YA7Ouahd2XU650g5jyiWi7kGXfoqCOBoXOFT73Qy67whxaOdR00PMj2yB65"
+);
+
 function Cart() {
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const cart = useSelector(selectCart);
+  const [checkoutForm, setCheckoutForm] = React.useState(false);
   React.useEffect(() => {
     if (auth.isAuthenticated) {
       dispatch(getCartItems(auth.user._id));
@@ -59,6 +68,7 @@ function Cart() {
       dispatch(updateCartItemQuantity({ itemID: itemID, quantity: value }));
     }
   }
+
   // if (auth.isAuthenticated) {
   //   return (
   //     <div className="cart">
@@ -121,7 +131,18 @@ function Cart() {
           </div>
         </div>
         <div className="checkout">
-          <button>Checkout</button>
+          {checkoutForm ? (
+            <Elements stripe={promise}>
+              <CheckoutForm
+                checkoutForm={checkoutForm}
+                setCheckoutForm={setCheckoutForm}
+              />
+            </Elements>
+          ) : (
+            <button id="checkout-button" onClick={() => setCheckoutForm(true)}>
+              Checkout
+            </button>
+          )}
         </div>
       </div>
     </div>

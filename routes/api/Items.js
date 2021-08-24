@@ -99,10 +99,15 @@ router.delete("/reviews", async (req, res) => {
 
   const chosenItem = await Item.findOne({ _id: itemID }, { reviews: 1 });
   const result = chosenItem.reviews.filter((x) => x._id !== reviewID);
-
-  Item.updateOne({ _id: itemID }, { $set: { reviews: result[0] } }).then(
-    (response) => res.json(response)
-  );
+  if (result[0] === null) {
+    Item.updateOne({ _id: itemID }, { $set: { reviews: [] } }).then(
+      (response) => res.json(response)
+    );
+  } else {
+    Item.updateOne({ _id: itemID }, { $set: { reviews: result[0] } }).then(
+      (response) => res.json(response)
+    );
+  }
 });
 router.get("/id/:id", (req, res) => {
   Item.findOne({ _id: req.params.id }).then((item) => res.json(item));

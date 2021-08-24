@@ -10,6 +10,7 @@ function ReviewsBlock() {
   React.useEffect(() => {
     dispatch(getReviews());
   }, []);
+
   return (
     <div className="reviews-container">
       <h1 className="header-text">Reviews</h1>
