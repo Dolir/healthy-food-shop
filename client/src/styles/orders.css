@@ -1,0 +1,52 @@
+.orderItems-list {
+  list-style: none;
+  padding: 0;
+}
+.orders {
+  height: min-content;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.orders-content {
+  width: 90%;
+}
+.orders-content h1 {
+  padding-bottom: 5px;
+  margin-bottom: 0;
+  border-bottom: 1px solid black;
+}
+
+.order-list-items {
+  display: flex;
+  flex-wrap: wrap;
+
+  width: 400px;
+}
+.order-list-items-container {
+  border-right: black 1px solid;
+}
+.order-list-items-container h3 {
+  text-align: center;
+  margin-top: 0;
+}
+.order-list > div {
+}
+.order-list-items span {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.308);
+  line-height: 25px;
+  padding: 5px;
+  margin: 5px;
+}
+.order-list-totalAmount {
+  height: 100%;
+}
+.order-list {
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.445);
+  margin: 0 20px;
+
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}

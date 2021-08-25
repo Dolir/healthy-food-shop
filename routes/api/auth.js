@@ -47,6 +47,19 @@ router.get("/cart", async (req, res) => {
   const result = await User.findOne({ _id: req.query.userID });
   res.json(result.cart);
 });
+router.post("/orders", async (req, res) => {
+  const { author_id } = req.body;
+  const result = await User.updateOne(
+    { _id: author_id },
+    { $push: { orders: req.body } }
+  );
+  res.json(result);
+});
+router.get("/orders", async (req, res) => {
+  console.log(req.query);
+  const result = await User.findOne({ _id: req.query.userID });
+  res.json(result.orders);
+});
 router.delete("/cartAll", (req, res) => {
   User.updateOne(
     {

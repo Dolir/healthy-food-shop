@@ -6,8 +6,16 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
-
-export default function CheckoutForm({ checkoutForm, setCheckoutForm }) {
+import { useDispatch } from "react-redux";
+import { addOrder } from "../features/orders/ordersSlice";
+export default function CheckoutForm({
+  checkoutForm,
+  setCheckoutForm,
+  cartItems,
+  setOrder,
+  order,
+}) {
+  const dispatch = useDispatch();
   const [succeeded, setSucceeded] = useState(false);
   const [error, setError] = useState(null);
   const [processing, setProcessing] = useState("");
@@ -24,13 +32,18 @@ export default function CheckoutForm({ checkoutForm, setCheckoutForm }) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ items: [{ id: "xl-tshirt" }] }),
+        body: JSON.stringify({ items: cartItems }),
       })
       .then((res) => {
         return res.json();
       })
       .then((data) => {
         setClientSecret(data.clientSecret);
+        setOrder((prev) => ({
+          ...prev,
+          totalAmount: data.amount,
+          created: data.created,
+        }));
       });
   }, []);
 
@@ -76,6 +89,7 @@ export default function CheckoutForm({ checkoutForm, setCheckoutForm }) {
       setError(null);
       setProcessing(false);
       setSucceeded(true);
+      dispatch(addOrder(order));
     }
   };
   function toggle() {

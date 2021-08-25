@@ -1,14 +1,19 @@
 import React from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../../features/auth/authSlice";
+import {
+  login,
+  openLoginModal,
+  closeLoginModal,
+} from "../../features/auth/authSlice";
+
 import { clearErrors } from "../../features/auth/errorSlice";
 function LoginModal() {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const error = useSelector((state) => state.error.error);
+  const loginModal = useSelector((state) => state.auth.loginModal);
   const [state, setState] = React.useState({
-    modal: false,
     email: "",
     password: "",
     msg: null,
@@ -29,7 +34,11 @@ function LoginModal() {
 
   function toggle() {
     dispatch(clearErrors());
-    setState({ ...state, modal: !state.modal });
+    if (loginModal) {
+      dispatch(closeLoginModal());
+    } else {
+      dispatch(openLoginModal());
+    }
   }
   function onChange(e) {
     setState({ ...state, [e.target.name]: e.target.value });
@@ -50,7 +59,7 @@ function LoginModal() {
       <div
         className="modal-container"
         style={
-          state.modal
+          loginModal
             ? { opacity: 1, pointerEvents: "auto" }
             : { opacity: 0, pointerEvents: "none" }
         }

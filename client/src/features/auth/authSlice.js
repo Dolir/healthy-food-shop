@@ -72,6 +72,18 @@ export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
+    openLoginModal: (state, action) => {
+      state.loginModal = true;
+    },
+    closeLoginModal: (state, action) => {
+      state.loginModal = false;
+    },
+    openRegisterModal: (state, action) => {
+      state.registerModal = true;
+    },
+    closeRegisterModal: (state, action) => {
+      state.registerModal = false;
+    },
     userLoading: (state, action) => {
       state.isLoading = true;
     },
@@ -117,6 +129,7 @@ export const authSlice = createSlice({
       state.user = null;
       state.isAuthenticated = false;
       state.isLoading = false;
+      state.loginModal = false;
       localStorage.removeItem("token");
     },
     registerFail: (state, action) => {
@@ -142,5 +155,12 @@ export const tokenConfig = (getState) => {
 };
 
 export const selectUserID = (state) => state.auth.user._id;
-export const { userLoading, logoutSuccess } = authSlice.actions;
+export const {
+  userLoading,
+  logoutSuccess,
+  openRegisterModal,
+  closeRegisterModal,
+  openLoginModal,
+  closeLoginModal,
+} = authSlice.actions;
 export default authSlice.reducer;

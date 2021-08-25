@@ -113,3 +113,12 @@
   padding: 10px;
   font-size: 25px;
 }
+#checkout-button-unlogged {
+  font-size: 25px;
+  padding: 5px;
+  color: rgba(0, 0, 0, 0.466);
+  background-color: rgb(218, 218, 218);
+}
+#checkout-button-unlogged span {
+  color: rgb(0, 0, 0);
+}

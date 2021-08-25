@@ -1,12 +1,17 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { register } from "../../features/auth/authSlice";
+import {
+  register,
+  openRegisterModal,
+  closeRegisterModal,
+} from "../../features/auth/authSlice";
+
 import { clearErrors } from "../../features/auth/errorSlice";
 function RegisterModal() {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const error = useSelector((state) => state.error.error);
+  const registerModal = useSelector((state) => state.auth.registerModal);
   const [state, setState] = React.useState({
-    modal: false,
     name: "",
     email: "",
     password: "",
@@ -29,7 +34,11 @@ function RegisterModal() {
 
   function toggle() {
     dispatch(clearErrors());
-    setState({ ...state, modal: !state.modal });
+    if (registerModal) {
+      dispatch(closeRegisterModal());
+    } else {
+      dispatch(openRegisterModal());
+    }
   }
   function onChange(e) {
     setState({ ...state, [e.target.name]: e.target.value });
@@ -52,7 +61,7 @@ function RegisterModal() {
       <div
         className="modal-container"
         style={
-          state.modal
+          registerModal
             ? { opacity: 1, pointerEvents: "auto" }
             : { opacity: 0, pointerEvents: "none" }
         }

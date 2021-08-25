@@ -31,12 +31,13 @@ const YOUR_DOMAIN = "http://localhost:3000/orders";
 // });
 router.post("/create-payment-intent", async (req, res) => {
   const calculateOrderAmount = (items) => {
-    // Replace this constant with a calculation of the order's amount
-    // Calculate the order total on the server to prevent
-    // people from directly manipulating the amount on the client
-    return 1400;
+    let sum = 0;
+    items.map((x) => (sum += parseInt(x.price) * x.quantity));
+
+    return sum * 100;
   };
   const { items } = req.body;
+
   // Create a PaymentIntent with the order amount and currency
   const paymentIntent = await stripe.paymentIntents.create({
     amount: calculateOrderAmount(items),
@@ -44,6 +45,8 @@ router.post("/create-payment-intent", async (req, res) => {
   });
   res.send({
     clientSecret: paymentIntent.client_secret,
+    created: paymentIntent.created,
+    amount: paymentIntent.amount,
   });
 });
 module.exports = router;
