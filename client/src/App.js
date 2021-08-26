@@ -10,6 +10,7 @@ import Account from "./components/Account";
 import { loadUser } from "./features/auth/authSlice";
 import Cart from "./components/Cart";
 import Orders from "./components/Orders";
+
 import { useDispatch } from "react-redux";
 function App() {
   const dispatch = useDispatch();
@@ -21,15 +22,20 @@ function App() {
       <Router>
         <Header />
         <Switch>
+          <Route path="/search/:searchTerm/page/:page/">
+            <Shop />
+          </Route>
           <Route path="/shop/page/:page">
             <Shop />
           </Route>
+
           <Route path="/shop/id/:id">
             <SingleItem />
           </Route>
           <Route path="/shop">
             <Shop />
           </Route>
+
           <Route path="/cart">
             <Cart />
           </Route>

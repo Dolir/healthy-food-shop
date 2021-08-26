@@ -20,7 +20,11 @@ function Order({ order }) {
       </div>
       <div className="order-list-date">
         <h3>Date</h3>
-        <h3> {date.toLocaleDateString()}</h3>
+        <h3 id="date-order">
+          {date.toLocaleTimeString()}
+          {"  "}
+          {date.toLocaleDateString()}
+        </h3>
       </div>
     </li>
   );

@@ -11,7 +11,7 @@ export const getItems = createAsyncThunk("items/getItems", async (options) => {
     const filters = JSON.stringify(options.filters);
 
     const response = await axios.get(
-      `/api/items?limit=${options.limit}&sort=${options.sort}&skip=${options.skip}&filters=${filters}`
+      `/api/items?limit=${options.limit}&sort=${options.sort}&skip=${options.skip}&filters=${filters}&searchTerm=${options.searchTerm}`
     );
     return response.data;
   }
@@ -29,7 +29,9 @@ export const getItemsCount = createAsyncThunk(
   "items/getItemsCount",
   async (options) => {
     const filters = JSON.stringify(options.filters);
-    const response = await axios.get(`/api/items/count?filters=${filters}`);
+    const response = await axios.get(
+      `/api/items/count?filters=${filters}&searchTerm=${options.searchTerm}`
+    );
     return response.data;
   }
 );

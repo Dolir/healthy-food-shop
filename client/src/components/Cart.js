@@ -39,11 +39,11 @@ function Cart() {
     if (auth.isAuthenticated) {
       dispatch(getCartItems(auth.user._id));
     }
-    return () => {
-      if (auth.isAuthenticated) {
-        dispatch(clearCart());
-      }
-    };
+    // return () => {
+    //   if (auth.isAuthenticated) {
+    //     dispatch(clearCart());
+    //   }
+    // };
   }, [auth.isAuthenticated]);
   React.useEffect(() => {
     if (auth.isAuthenticated) {

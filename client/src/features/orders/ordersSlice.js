@@ -13,8 +13,8 @@ export const getOrders = createAsyncThunk(
 );
 
 export const addOrder = createAsyncThunk("orders/addOrder", async (order) => {
-  const response = await axios.post(`/api/auth/orders`, order);
-  return response.data;
+  await axios.post(`/api/auth/orders`, order);
+  return order;
 });
 
 export const ordersSlice = createSlice({

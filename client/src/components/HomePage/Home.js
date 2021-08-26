@@ -2,7 +2,7 @@ import React from "react";
 import fruits from "../../images/fruits.jpg";
 import "../../styles/home.css";
 import ItemsList from "../ItemsList";
-import Reviews from "../ReviewsBlock";
+import ReviewsBlock from "../ReviewsBlock";
 function Home() {
   return (
     <div className="main-page">
@@ -13,9 +13,8 @@ function Home() {
       <div className="content-block">
         <ItemsList />
       </div>
-
       <div className="content-block">
-        <Reviews />
+        <ReviewsBlock />
       </div>
     </div>
   );

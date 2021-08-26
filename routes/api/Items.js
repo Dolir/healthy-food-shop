@@ -3,9 +3,13 @@ const router = express.Router();
 const Item = require("../../models/Item");
 const mongoose = require("mongoose");
 
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
   const { limit } = req.query;
   const { skip } = req.query;
+  let searchTerm;
+  if (req.query.searchTerm !== "undefined") {
+    searchTerm = req.query.searchTerm;
+  }
   let filters;
   if (req.query.filters !== "undefined") {
     filters = JSON.parse(req.query.filters);
@@ -26,8 +30,10 @@ router.get("/", (req, res) => {
       sort = { name: 1 };
       break;
   }
+
   if (filters) {
     Item.find({
+      name: searchTerm ? { $regex: searchTerm, $options: "$i" } : { $ne: null },
       price: filters.maxprice
         ? { $gte: filters.minprice, $lte: filters.maxprice }
         : { $ne: undefined },
@@ -43,6 +49,7 @@ router.get("/", (req, res) => {
       .then((items) => res.json(items));
   } else {
     Item.find({
+      name: searchTerm ? { $regex: searchTerm, $options: "$i" } : { $ne: null },
       price: filters
         ? { $gte: filters.minprice, $lte: filters.maxprice }
         : { $ne: undefined },
@@ -58,8 +65,15 @@ router.get("/", (req, res) => {
 });
 
 router.get("/count", (req, res) => {
+  let searchTerm;
+  if (req.query.searchTerm !== "undefined") {
+    searchTerm = req.query.searchTerm;
+  }
   const filters = JSON.parse(req.query.filters);
   Item.countDocuments({
+    name: searchTerm
+      ? { $regex: searchTerm, $options: "$i" }
+      : { $ne: undefined },
     price: filters.maxprice
       ? { $gte: filters.minprice, $lte: filters.maxprice }
       : { $ne: undefined },
@@ -82,11 +96,15 @@ router.get("/minprice", (req, res) => {
     .limit(1)
     .then((max) => res.json(max));
 });
-router.get("/reviews", (req, res) => {
+router.get("/reviews", async (req, res) => {
   const { limit } = req.query;
-  Item.find({}, { reviews: 1, _id: 0 })
-    .limit(parseInt(limit))
-    .then((reviews) => res.json(reviews));
+  const response = await Item.find(
+    { reviews: { $ne: [] } },
+    { reviews: 1, _id: 0 }
+  ).limit(parseInt(limit));
+
+  const result = response.map((x) => x.reviews);
+  res.json(result);
 });
 router.post("/reviews", (req, res) => {
   const { itemID, review } = req.body;

@@ -9,6 +9,7 @@ import Logout from "./Auth/Logout";
 import RegisterModal from "./Auth/RegisterModal";
 import LoginModal from "./Auth/LoginModal";
 import { useSelector } from "react-redux";
+// import { getCartItemsCount, clearCartCount } from "../features/cart/cartSlice";
 function Header() {
   const { pathname } = useLocation();
   const auth = useSelector((state) => state.auth);

@@ -47,6 +47,11 @@ router.get("/cart", async (req, res) => {
   const result = await User.findOne({ _id: req.query.userID });
   res.json(result.cart);
 });
+// router.get("/cartCount", async (req, res) => {
+//   const result = await User.findOne({ _id: req.query.userID });
+
+//   res.json(result.cart.length);
+// });
 router.post("/orders", async (req, res) => {
   const { author_id } = req.body;
   const result = await User.updateOne(
@@ -56,7 +61,6 @@ router.post("/orders", async (req, res) => {
   res.json(result);
 });
 router.get("/orders", async (req, res) => {
-  console.log(req.query);
   const result = await User.findOne({ _id: req.query.userID });
   res.json(result.orders);
 });

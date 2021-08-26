@@ -8,7 +8,7 @@ function ReviewsBlock() {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    dispatch(getReviews());
+    dispatch(getReviews(3));
   }, []);
 
   return (
@@ -16,10 +16,10 @@ function ReviewsBlock() {
       <h1 className="header-text">Reviews</h1>
       <div className="reviews-block">
         {reviews.isLoading === false
-          ? reviews.reviews[0].reviews.map((x, key) => (
-              <Review data={x} key={key} />
-            ))
-          : ""}
+          ? reviews.reviews.map((item, key) =>
+              item.map((review) => <Review data={review} key={key} />)
+            )
+          : "adaasdawdawdawsd"}
       </div>
     </div>
   );

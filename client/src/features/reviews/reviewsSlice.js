@@ -27,9 +27,7 @@ export const reviewsSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(getReviews.fulfilled, (state, action) => {
-        state.reviews = action.payload.filter(
-          (x) => Object.keys(x).length !== 0
-        );
+        state.reviews = action.payload;
         state.isLoading = false;
       });
   },

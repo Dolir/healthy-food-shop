@@ -11,6 +11,13 @@ const initialState = {
   isLoading: null,
   count: 0,
 };
+// export const getCartItemsCount = createAsyncThunk(
+//   "cart/getCartItemsCount",
+//   async (userID) => {
+//     const response = await axios.get(`/api/auth/cartCount?userID=${userID}`);
+//     return response.data;
+//   }
+// );
 export const addCartItemAsync = createAsyncThunk(
   "cart/addCartItem",
   async (item) => {
@@ -80,6 +87,9 @@ export const cartSlice = createSlice({
         state.cartItems.filter((x) => x._id !== action.payload)
       );
     },
+    // clearCartCount: (state, action) => {
+    //   state.count = 0;
+    // },
     clearCart: (state, action) => {
       state.cartItems = [];
       localStorage.removeItem("cart");
@@ -140,6 +150,11 @@ export const cartSlice = createSlice({
         localStorage.setObj("cart", state.cartItems);
         state.isLoading = false;
       })
+      // .addCase(getCartItemsCount.fulfilled, (state, action) => {
+      //   state.count = action.payload;
+
+      //   state.isLoading = false;
+      // })
       .addCase(updateCartItemQuantityAsync.pending, (state, action) => {
         // const chosenIndex = state.cartItems.findIndex(
         //   (x) => x._id === action.payload.itemID
@@ -167,6 +182,11 @@ export const cartSlice = createSlice({
 });
 
 export const selectCart = (state) => state.cart;
-export const { clearCart, clearCartItem, addCartItem, updateCartItemQuantity } =
-  cartSlice.actions;
+export const {
+  clearCart,
+  clearCartCount,
+  clearCartItem,
+  addCartItem,
+  updateCartItemQuantity,
+} = cartSlice.actions;
 export default cartSlice.reducer;

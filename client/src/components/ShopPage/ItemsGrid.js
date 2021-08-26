@@ -7,11 +7,12 @@ import {
   getItemsCount,
   clearItems,
 } from "../../features/items/itemsSlice";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import SortPopup from "./SortPopup";
 import classNames from "classnames";
 function ItemsGrid({ filters }) {
   const { pathname } = useLocation();
+  const params = useParams();
   const items = useSelector(selectItems);
   const [option, setOption] = React.useState("Alphabet");
   const [itemsCount, setItemsCount] = React.useState();
@@ -22,15 +23,24 @@ function ItemsGrid({ filters }) {
   const limit = 12;
 
   React.useEffect(() => {
-    dispatch(getItemsCount({ filters: filters }));
+    dispatch(
+      getItemsCount({ filters: filters, searchTerm: params.searchTerm })
+    );
     setItemsCount(items.count);
-    dispatch(getItems({ sort: option, limit: limit, filters: filters }));
+    dispatch(
+      getItems({
+        sort: option,
+        limit: limit,
+        filters: filters,
+        searchTerm: params.searchTerm,
+      })
+    );
     setPage(`${pathname[pathname.length - 1] - 1}`);
     handlePages();
     return () => {
       dispatch(clearItems());
     };
-  }, [items.count, option, filters]);
+  }, [items.count, option, filters, params.searchTerm]);
   function handlePages(e) {
     const count = e
       ? e.target.attributes[0].value
@@ -42,6 +52,7 @@ function ItemsGrid({ filters }) {
         limit: limit,
         skip: limit * count,
         filters: filters,
+        searchTerm: params.searchTerm,
       })
     );
     setPage(count);
@@ -60,7 +71,8 @@ function ItemsGrid({ filters }) {
       <div className="items-sort">
         <h3>Sort by:</h3>
         <SortPopup option={option} setOption={setOption} />
-        {/* <div>{itemsCount}</div> */}
+        {/* <div>{itemsCount}</div> */}{" "}
+        <h3 style={{ color: "gray" }}>Searched for "{params.searchTerm}"</h3>
       </div>
 
       <div className="items-grid">
@@ -72,7 +84,10 @@ function ItemsGrid({ filters }) {
       </div>
       <div className="items-pages">
         {PageCount().map((x) => (
-          <Link to={`/shop/page/${x}`} key={x}>
+          <Link
+            to={`${params.searchTerm ? "/search/appl" : "/shop"}/page/${x}`}
+            key={x}
+          >
             <div
               onClick={handlePages}
               value={x - 1}

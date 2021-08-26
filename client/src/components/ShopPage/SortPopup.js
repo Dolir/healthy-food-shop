@@ -1,6 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 function SortPopup({ option, setOption }) {
+  const params = useParams();
   function handleDisplay(e) {
     let elementDisplay = document.querySelector(".options-list");
     elementDisplay.style.display =
@@ -20,7 +21,13 @@ function SortPopup({ option, setOption }) {
       <div onClick={handleDisplay}>
         <span>{option}</span>
       </div>
-      <Link to="/shop/page/1">
+      <Link
+        to={
+          params.searchTerm
+            ? `/search/${params.searchTerm}/page/1`
+            : "/shop/page/1"
+        }
+      >
         <ul className="options-list" style={{ display: "none" }}>
           <li onClick={handleSelect}>Alphabet</li>
           <li onClick={handleSelect}>

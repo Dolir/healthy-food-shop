@@ -2,7 +2,9 @@ import React from "react";
 import "../../styles/shop.css";
 import ItemsGrid from "./ItemsGrid";
 import Filter from "./Filter";
+import { useParams } from "react-router-dom";
 function Shop() {
+  const params = useParams();
   const [filters, setFilters] = React.useState({
     maxprice: 9999999999999,
     minprice: 0,
@@ -12,7 +14,7 @@ function Shop() {
   });
   return (
     <div className="shop-container">
-      <Filter setFilters={setFilters} />
+      {params.searchTerm ? "" : <Filter setFilters={setFilters} />}
       <ItemsGrid filters={filters} />
     </div>
   );

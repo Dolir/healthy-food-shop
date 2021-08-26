@@ -6,6 +6,7 @@ import {
   getMaxPrice,
   getMinPrice,
 } from "../../features/items/itemsSlice";
+
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 function Filter({ setFilters }) {
