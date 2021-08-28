@@ -122,3 +122,22 @@
 #checkout-button-unlogged span {
   color: rgb(0, 0, 0);
 }
+@media only screen and (max-width: 629px) {
+  .cartItems-list li {
+    flex-direction: column;
+  }
+  .left-side-cart button {
+    width: 30px;
+    padding-top: 2px;
+    padding-right: 10px;
+    padding-left: 10px;
+    height: 30px;
+  }
+  .left-side-cart a h3 {
+    width: fit-content;
+    height: fit-content;
+  }
+  .quantity-price {
+    justify-content: space-around;
+  }
+}

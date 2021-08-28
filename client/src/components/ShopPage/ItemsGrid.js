@@ -10,7 +10,7 @@ import {
 import { Link, useLocation, useParams } from "react-router-dom";
 import SortPopup from "./SortPopup";
 import classNames from "classnames";
-function ItemsGrid({ filters }) {
+function ItemsGrid({ filters, setOpenFilter }) {
   const { pathname } = useLocation();
   const params = useParams();
   const items = useSelector(selectItems);
@@ -69,10 +69,21 @@ function ItemsGrid({ filters }) {
   return (
     <div className="items-grid-container">
       <div className="items-sort">
-        <h3>Sort by:</h3>
-        <SortPopup option={option} setOption={setOption} />
-        {/* <div>{itemsCount}</div> */}{" "}
-        <h3 style={{ color: "gray" }}>Searched for "{params.searchTerm}"</h3>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          {" "}
+          <h3>Sort by:</h3>
+          <SortPopup option={option} setOption={setOption} />
+        </div>
+
+        {params.searchTerm ? (
+          <h3 id="searched-for" style={{ color: "gray" }}>
+            Searched for "{params.searchTerm}"
+          </h3>
+        ) : (
+          <h3 id="open-filter" onClick={() => setOpenFilter((prev) => !prev)}>
+            Filters
+          </h3>
+        )}
       </div>
 
       <div className="items-grid">

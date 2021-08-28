@@ -87,7 +87,9 @@ function SingleItem() {
       <div className="sngitem">
         {modal ? <CartModal modal={modal} setModal={setModal} /> : ""}
         <div className="single-item-container">
-          <button onClick={goBack}>go back</button>
+          <button onClick={goBack} id="goback-btn">
+            Go back
+          </button>
           <div className="single-item">
             <div className="single-item-img">
               <img src={singleItem.url} alt={singleItem.name} />
@@ -106,7 +108,7 @@ function SingleItem() {
                   <h3 className="item-price">{singleItem.price}$</h3>
                 </div>
                 <div className="single-item-btns">
-                  <button className="tocart-btn buy-btn">Buy</button>
+                  <button className="buy-btn tocart-btn">Buy</button>
                   <button className="tocart-btn" onClick={handleToCart}>
                     To cart
                   </button>

@@ -12,10 +12,19 @@ function Shop() {
     type: [],
     additional: [],
   });
+  const [openFilter, setOpenFilter] = React.useState(false);
   return (
     <div className="shop-container">
-      {params.searchTerm ? "" : <Filter setFilters={setFilters} />}
-      <ItemsGrid filters={filters} />
+      {params.searchTerm ? (
+        ""
+      ) : (
+        <Filter
+          setFilters={setFilters}
+          openFilter={openFilter}
+          setOpenFilter={setOpenFilter}
+        />
+      )}
+      <ItemsGrid filters={filters} setOpenFilter={setOpenFilter} />
     </div>
   );
 }

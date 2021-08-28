@@ -37,7 +37,7 @@
 }
 .single-item-btns {
   display: flex;
-  max-width: 200px;
+  width: 200px;
   margin-left: 100px;
   flex-wrap: wrap;
   align-content: space-around;
@@ -206,11 +206,120 @@
 .rate > label:hover ~ input:checked ~ label {
   color: #c59b08;
 }
+#goback-btn:hover {
+  filter: brightness(90%);
+}
+#goback-btn:active {
+  filter: brightness(60%);
+}
+#goback-btn {
+  margin-left: 10px;
+  margin-top: 10px;
+  border: 0;
+  height: 30px;
+  background-color: rgb(78, 78, 78);
+  color: white;
+  border-radius: 5px;
+}
 @media only screen and (max-width: 1090px) {
+  .single-reviews-container {
+    width: inherit;
+  }
+  .sngitem .modal {
+    height: min-content;
+  }
+  .sngitem .modal-dialog button {
+    height: auto;
+    font-size: 50px;
+  }
+  .single-item-img img {
+    height: inherit;
+    width: inherit;
+  }
   .single-item {
     width: inherit;
   }
+  .sngitem {
+    width: inherit;
+  }
+  .single-item-container .item-name .item-name {
+    height: fit-content;
+    width: 95%;
+  }
+}
+@media only screen and (max-width: 838px) {
   .single-reviews-container {
     width: inherit;
+  }
+  .single-item-info {
+    width: inherit;
+  }
+
+  .single-reviews-container {
+    width: inherit;
+  }
+}
+
+@media only screen and (max-width: 733px) {
+  .single-item-info-upper {
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+  .single-item-img img {
+    width: 350px;
+    height: 350px;
+  }
+  .single-item-btns {
+    margin-left: 0;
+  }
+  .item-price {
+    margin-bottom: 10px;
+    margin-top: 0;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .single-item {
+    flex-direction: column;
+  }
+  .single-item-container .item-name {
+    text-align: center;
+
+    width: 100%;
+  }
+  .single-item-img {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 350px;
+    height: 350px;
+  }
+  .item-price {
+    text-align: center;
+  }
+  .single-item-btns {
+    width: 100%;
+    flex-direction: column;
+  }
+  .single-item-btns button {
+    width: 90%;
+  }
+  .single-item-container .tocart-btn {
+    font-size: 25px;
+    height: 50px;
+  }
+  .single-item-info p {
+    margin-left: 20px;
+  }
+}
+@media only screen and (max-width: 375px) {
+  .single-item-img img {
+    width: 300px;
+    height: 300px;
+  }
+  .single-item-img {
+    width: 300px;
+    height: 300px;
   }
 }

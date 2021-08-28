@@ -82,5 +82,41 @@
 .modal-dialog {
   width: 100%;
   display: flex;
+
+  align-items: center;
   justify-content: center;
+}
+@media only screen and (max-width: 838px) {
+  .modal {
+    height: 100%;
+    width: 100vw;
+  }
+  .modal-form {
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    font-size: 30px;
+  }
+  .modal-header button {
+    height: 50px;
+    width: 50px;
+    font-size: 40px;
+    color: white;
+  }
+  .modal-header h2 {
+    display: flex;
+    align-items: center;
+    margin-top: 0;
+  }
+  .modal-form > div {
+    margin-bottom: 60px;
+  }
+  .modal-form > div input {
+    font-size: 25px;
+    height: 50px;
+  }
+  .modal-form > button {
+    height: 50px;
+    font-size: 25px;
+  }
 }

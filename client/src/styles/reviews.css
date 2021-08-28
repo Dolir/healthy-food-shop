@@ -8,6 +8,7 @@
   margin-right: 10px;
   margin-left: 10px;
   font-size: 25px;
+  height: 45%;
 }
 .review {
   border-radius: 10px;
@@ -16,11 +17,15 @@
   margin-left: 10px;
   height: 500px;
   width: 400px;
+
   background-color: rgba(255, 255, 255, 0.9);
 }
 
 .reviews-container {
   background-image: url(../images/fruits.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+
   border-radius: 5px;
   width: inherit;
   padding-bottom: 50px;
@@ -35,8 +40,21 @@
   border: none;
   width: 200px;
 }
+@media only screen and (max-width: 1570px) {
+  .review p {
+    height: 50%;
+  }
+  .review {
+    height: 550px;
+  }
+}
 @media only screen and (max-width: 1090px) {
   .review {
     height: 530px;
+    margin-top: 20px;
+    word-break: break-all;
+  }
+  .reviews-block {
+    flex-wrap: wrap;
   }
 }

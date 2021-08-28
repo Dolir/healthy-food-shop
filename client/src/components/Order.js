@@ -14,17 +14,19 @@ function Order({ order }) {
           ))}
         </div>
       </div>
-      <div className="order-list-totalAmount">
-        <h3>Total</h3>
-        <h3>{order.totalAmount / 100}$</h3>
-      </div>
-      <div className="order-list-date">
-        <h3>Date</h3>
-        <h3 id="date-order">
-          {date.toLocaleTimeString()}
-          {"  "}
-          {date.toLocaleDateString()}
-        </h3>
+      <div className="order-list-dateTotal">
+        <div className="order-list-totalAmount">
+          <h3>Total</h3>
+          <h3>{order.totalAmount / 100}$</h3>
+        </div>
+        <div className="order-list-date">
+          <h3>Date</h3>
+          <h3 id="date-order">
+            {date.toLocaleTimeString()}
+            {"  "}
+            {date.toLocaleDateString()}
+          </h3>
+        </div>
       </div>
     </li>
   );

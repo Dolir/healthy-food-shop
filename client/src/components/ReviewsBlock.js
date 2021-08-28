@@ -10,14 +10,15 @@ function ReviewsBlock() {
   React.useEffect(() => {
     dispatch(getReviews(3));
   }, []);
-
   return (
     <div className="reviews-container">
       <h1 className="header-text">Reviews</h1>
       <div className="reviews-block">
         {reviews.isLoading === false
           ? reviews.reviews.map((item, key) =>
-              item.map((review) => <Review data={review} key={key} />)
+              item
+                .slice(0, 1)
+                .map((review) => <Review data={review} key={key} />)
             )
           : "adaasdawdawdawsd"}
       </div>

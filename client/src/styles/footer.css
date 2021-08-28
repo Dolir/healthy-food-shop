@@ -27,7 +27,10 @@ footer h1 {
 .footer-block.links {
   width: 20%;
 }
-
+.footer-block {
+  margin-left: 20px;
+  margin-right: 20px;
+}
 .default-ul {
   display: inline;
   list-style: none;
@@ -43,5 +46,25 @@ footer h1 {
 @media only screen and (max-width: 1090px) {
   .footer-content {
     width: 650px;
+  }
+}
+@media only screen and (max-width: 733px) {
+  .footer-content {
+    flex-wrap: wrap;
+  }
+}
+@media only screen and (max-width: 381px) {
+  .footer-content {
+    flex-direction: column;
+  }
+  .footer-block {
+    text-align: center;
+    align-self: center;
+    width: 300px !important;
+    margin-right: 0;
+    margin-left: 0;
+  }
+  .footer-block ul {
+    align-self: center;
   }
 }

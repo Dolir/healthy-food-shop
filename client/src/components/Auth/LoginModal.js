@@ -53,15 +53,15 @@ function LoginModal() {
   }
   return (
     <div>
-      <div onClick={toggle} className="Signup">
+      <div onClick={toggle} className="Signin">
         Login
       </div>
       <div
         className="modal-container"
         style={
           loginModal
-            ? { opacity: 1, pointerEvents: "auto" }
-            : { opacity: 0, pointerEvents: "none" }
+            ? { transform: "translateX(1500px)", pointerEvents: "auto" }
+            : { transform: "translateX(-1500px)", pointerEvents: "none" }
         }
       >
         <div className="modal">

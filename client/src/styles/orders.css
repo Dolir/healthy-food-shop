@@ -21,7 +21,7 @@
   display: flex;
   flex-wrap: wrap;
 
-  width: 400px;
+  width: 100%;
 }
 #date-order {
   width: 150px;
@@ -29,6 +29,7 @@
 }
 .order-list-items-container {
   border-right: black 1px solid;
+  width: 100%;
 }
 .order-list-items-container h3 {
   text-align: center;
@@ -47,6 +48,11 @@
 .order-list-totalAmount {
   height: 130px;
 }
+.order-list-dateTotal {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
 .order-list {
   text-align: center;
   padding-bottom: 16px;
@@ -56,4 +62,34 @@
   justify-content: space-between;
   align-items: center;
   display: flex;
+}
+@media only screen and (max-width: 733px) {
+  .order-list {
+    flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+  }
+  .order-list-items-container {
+    border-right: 0;
+  }
+  .order-list-dateTotal {
+    display: flex;
+  }
+}
+@media only screen and (max-width: 380px) {
+  /* .order-list {
+    flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: column;
+  }
+  .order-list-items-container {
+    border-right: 0;
+  }
+  .order-list-items {
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: fit-content;
+  } */
 }
