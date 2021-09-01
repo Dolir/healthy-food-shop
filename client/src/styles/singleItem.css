@@ -1,9 +1,11 @@
 .single-item {
   width: 1000px;
   display: flex;
+  height: inherit;
 }
 .sngitem {
   display: flex;
+
   justify-content: center;
 }
 .single-item-container .item-name {
@@ -15,8 +17,10 @@
 }
 .single-item-container {
   width: inherit;
+
   justify-self: center;
 }
+
 .single-item-img {
   height: 400px;
   width: 400px;
@@ -221,6 +225,9 @@
   color: white;
   border-radius: 5px;
 }
+.adaptive-mobile {
+  display: none;
+}
 @media only screen and (max-width: 1090px) {
   .single-reviews-container {
     width: inherit;
@@ -241,8 +248,13 @@
   }
   .sngitem {
     width: inherit;
+    height: inherit;
   }
-  .single-item-container .item-name .item-name {
+  .single-item-container {
+    width: inherit;
+    height: inherit;
+  }
+  .single-item-container .item-name {
     height: fit-content;
     width: 95%;
   }
@@ -278,6 +290,12 @@
   }
 }
 @media only screen and (max-width: 600px) {
+  .adaptive-mobile {
+    display: block;
+  }
+  .not-adaptive {
+    display: none !important;
+  }
   .single-item {
     flex-direction: column;
   }

@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 function CartModal({ modal, setModal }) {
   return (
     <div
-      className="modal-container"
+      className="modal-container not-transform"
       style={
         modal
           ? { opacity: 1, pointerEvents: "auto" }

@@ -11,7 +11,7 @@ import { useParams, useHistory } from "react-router-dom";
 import "../../styles/singleItem.css";
 import CartModal from "../CartModal";
 import { addCartItem, addCartItemAsync } from "../../features/cart/cartSlice";
-
+import SingleItemLoading from "./SingleItemLoading";
 import ItemReviews from "./ItemReviews";
 import { v4 as uuidv4 } from "uuid";
 function SingleItem() {
@@ -29,6 +29,7 @@ function SingleItem() {
     _id: uuidv4(),
     date: Date.now(),
   });
+
   React.useEffect(() => {
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
@@ -46,6 +47,7 @@ function SingleItem() {
       }));
     }
   }, [auth.isAuthenticated]);
+
   function handleToCart() {
     setModal(true);
     if (auth.isAuthenticated) {
@@ -82,6 +84,7 @@ function SingleItem() {
       setReview((prev) => ({ ...prev, text: e.target.value }));
     }
   }
+
   if (singleItem) {
     return (
       <div className="sngitem">
@@ -108,8 +111,10 @@ function SingleItem() {
                   <h3 className="item-price">{singleItem.price}$</h3>
                 </div>
                 <div className="single-item-btns">
-                  <button className="buy-btn tocart-btn">Buy</button>
-                  <button className="tocart-btn" onClick={handleToCart}>
+                  <button
+                    className=" buy-btn tocart-btn"
+                    onClick={handleToCart}
+                  >
                     To cart
                   </button>
                 </div>
@@ -213,7 +218,17 @@ function SingleItem() {
       </div>
     );
   }
-  return <div></div>;
+  const response = document.querySelector(".single-item-container");
+  return (
+    <div className="sngitem">
+      <div className="single-item-container adaptive-mobile">
+        <SingleItemLoading mobile="true" className="single-item-container" />
+      </div>
+      <div className="single-item-container not-adaptive">
+        <SingleItemLoading className="single-item-container" />
+      </div>
+    </div>
+  );
 }
 
 export default SingleItem;

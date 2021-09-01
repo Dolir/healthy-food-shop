@@ -15,12 +15,16 @@ function Header() {
   const auth = useSelector((state) => state.auth);
   const cartItemsCount = useSelector((state) => state.cart.cartItems).length;
   const [modal, setModal] = React.useState(false);
-  function onClick(e) {
-    setModal(!modal);
+  function onClick(newState) {
+    if (newState === false) {
+      setModal(false);
+    } else {
+      setModal(!modal);
+    }
   }
   const authLinks = (
     <div className="auth">
-      <NavLink to="/orders" className="navbar-text" onClick={onClick}>
+      <NavLink to="/orders" className="navbar-text">
         {auth.isAuthenticated ? "Orders" : ""}
       </NavLink>
       <Logout onClick={onClick} />
@@ -126,7 +130,9 @@ function Header() {
               </NavLink>
             </li>
 
-            <li>{auth.isAuthenticated ? authLinks : guestLinks}</li>
+            <li onClick={() => onClick(false)}>
+              {auth.isAuthenticated ? authLinks : guestLinks}
+            </li>
             <li className="CartPart">
               {" "}
               <NavLink to="/cart" onClick={onClick}>
@@ -136,7 +142,7 @@ function Header() {
             </li>
           </ul>
         </div>
-        <div class="menu-icon" onClick={onClick}>
+        <div className="menu-icon" onClick={onClick}>
           <span className="line"></span>
           <span className="line"></span>
           <span className="line"></span>

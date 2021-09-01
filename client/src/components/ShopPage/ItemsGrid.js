@@ -10,6 +10,7 @@ import {
 import { Link, useLocation, useParams } from "react-router-dom";
 import SortPopup from "./SortPopup";
 import classNames from "classnames";
+import LoadingBlock from "../LoadingBlock";
 function ItemsGrid({ filters, setOpenFilter }) {
   const { pathname } = useLocation();
   const params = useParams();
@@ -66,6 +67,7 @@ function ItemsGrid({ filters, setOpenFilter }) {
     }
     return arr;
   }
+
   return (
     <div className="items-grid-container">
       <div className="items-sort">
@@ -87,11 +89,24 @@ function ItemsGrid({ filters, setOpenFilter }) {
       </div>
 
       <div className="items-grid">
-        <ul className="items-grid-list">
-          {!items.isLoading
-            ? items.items.map((item, key) => <Item item={item} key={key} />)
-            : ""}
-        </ul>
+        {!items.isLoading ? (
+          <ul className="items-grid-list">
+            {" "}
+            {items.items.map((item, key) => (
+              <Item item={item} key={key} />
+            ))}
+          </ul>
+        ) : (
+          <ul className="items-grid-list">
+            {Array(12)
+              .fill(
+                <li className="item">
+                  <LoadingBlock width={200} height={350} />
+                </li>
+              )
+              .map((x, key) => ({ ...x, key: key }))}
+          </ul>
+        )}
       </div>
       <div className="items-pages">
         {PageCount().map((x) => (

@@ -65,7 +65,12 @@ function ItemsList() {
   // if (items.isLoading === false) {
   //   timeout = setTimeout(arrowSlideRight, 5000);
   // }
-
+  async function getWidth() {
+    return await document.querySelector(".item").clientWidth;
+  }
+  async function getHeight() {
+    return await document.querySelector(".item").clientHeight;
+  }
   return (
     <div className="carousel">
       <h1 className="header-text">Best selling</h1>
@@ -81,22 +86,22 @@ function ItemsList() {
         {items.isLoading ? (
           <ul className="itemsList">
             <li className="item">
-              <LoadingBlock />
+              <LoadingBlock width={getWidth} height={getHeight} />
             </li>
             <li className="item">
-              <LoadingBlock />
+              <LoadingBlock width={getWidth} height={getHeight} />
             </li>
             <li className="item">
-              <LoadingBlock />
+              <LoadingBlock width={getWidth} height={getHeight} />
             </li>
             <li className="item">
-              <LoadingBlock />
+              <LoadingBlock width={getWidth} height={getHeight} />
             </li>
             <li className="item">
-              <LoadingBlock />
+              <LoadingBlock width={getWidth} height={getHeight} />
             </li>
             <li className="item">
-              <LoadingBlock />
+              <LoadingBlock width={getWidth} height={getHeight} />
             </li>
           </ul>
         ) : (

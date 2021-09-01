@@ -151,6 +151,9 @@
   -webkit-animation: loading 2s infinite ease;
   animation: loading 2s infinite ease;
 }
+#payment-form > div {
+  border: 1px solid gray;
+}
 
 @keyframes loading {
   0% {
@@ -162,7 +165,48 @@
     transform: rotate(360deg);
   }
 }
+@media only screen and (max-width: 838px) {
+  .modal-container {
+    transform: translateX(1500px);
+  }
+  .not-transform {
+    transform: translateX(0) !important;
+  }
+  .modal {
+    height: 100%;
+    width: 100vw;
+  }
+  .modal-form {
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    font-size: 30px;
+  }
+  #close-btn {
+    font-size: 70px;
+    margin-left: 20px;
+    margin-top: 20px;
+  }
+  #payment-form {
+    position: relative;
 
+    margin: auto;
+    margin-top: 100px;
+    height: inherit;
+  }
+  #payment-form > div {
+    margin-bottom: 60px;
+    border: 1px solid gray;
+  }
+  #payment-form > div input {
+    font-size: 25px;
+    height: 50px;
+  }
+  #payment-form > button {
+    height: 50px;
+    font-size: 25px;
+  }
+}
 @media only screen and (max-width: 600px) {
   .checkout form {
     width: 80vw;

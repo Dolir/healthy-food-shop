@@ -20,7 +20,7 @@ function ReviewsBlock() {
                 .slice(0, 1)
                 .map((review) => <Review data={review} key={key} />)
             )
-          : "adaasdawdawdawsd"}
+          : ""}
       </div>
     </div>
   );

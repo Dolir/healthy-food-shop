@@ -62,8 +62,14 @@ function RegisterModal() {
         className="modal-container"
         style={
           registerModal
-            ? { transform: "translateX(1500px)", pointerEvents: "auto" }
-            : { transform: "translateX(-1500px)", pointerEvents: "none" }
+            ? {
+                display: "flex",
+                pointerEvents: "auto",
+              }
+            : {
+                display: "none",
+                pointerEvents: "none",
+              }
         }
       >
         <div className="modal">

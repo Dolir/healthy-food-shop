@@ -87,7 +87,14 @@
   justify-content: center;
 }
 @media only screen and (max-width: 838px) {
+  .modal-container {
+    transform: translateX(1500px);
+  }
+  .not-transform {
+    transform: translateX(0) !important;
+  }
   .modal {
+    overflow: hidden;
     height: 100%;
     width: 100vw;
   }

@@ -11,11 +11,11 @@ function LoadingBlock(props) {
       foregroundColor="#ecebeb"
       {...props}
     >
-      <rect x="10" y="5" rx="68" ry="13" width="230" height="220" />
+      <rect x="5" y="5" rx="68" ry="68" width="233" height="220" />
       <rect x="91" y="229" rx="0" ry="0" width="61" height="16" />
-      <rect x="57" y="252" rx="0" ry="0" width="132" height="38" />
-      <rect x="25" y="307" rx="0" ry="0" width="200" height="20" />
-      <rect x="59" y="350" rx="13" ry="13" width="133" height="43" />
+      <rect x="60" y="266" rx="0" ry="0" width="132" height="38" />
+      <rect x="30" y="342" rx="0" ry="0" width="203" height="20" />
+      <rect x="59" y="399" rx="13" ry="13" width="133" height="43" />
     </ContentLoader>
   );
 }

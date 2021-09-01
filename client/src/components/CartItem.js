@@ -2,15 +2,27 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function CartItem({ item, handleDeleteItem, handleChange }) {
+  const [count, setCount] = React.useState(item.quantity);
+  React.useEffect(() => {
+    setCount(item.quantity);
+  }, [item.quantity]);
   const onChange = (e) => {
-    if (!e.target.value || parseInt(e.target.value) === 0) {
-      console.log(e.target.value);
-      handleChange(1, item._id);
+    if (!e.target.value) {
+      setCount("");
+      return;
+    }
+    if (parseInt(e.target.value) === 0) {
+      return;
     } else {
       handleChange(e.target.value, item._id);
     }
   };
-
+  function onMouseLeave(e) {
+    if (!e.target.value) {
+      setCount("1");
+      return;
+    }
+  }
   return (
     <li>
       <div className="left-side-cart">
@@ -22,11 +34,12 @@ function CartItem({ item, handleDeleteItem, handleChange }) {
       <div className="quantity-price">
         <input
           type="number"
-          value={item.quantity}
-          minLength={1}
-          min={1}
+          value={count}
+          minLength={0}
+          min={0}
           max={999}
           onChange={onChange}
+          onMouseLeave={onMouseLeave}
         />
         <div>
           <strong>{item.price}$</strong> <p>{item.discount}% off</p>

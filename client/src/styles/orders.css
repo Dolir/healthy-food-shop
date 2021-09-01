@@ -64,6 +64,9 @@
   display: flex;
 }
 @media only screen and (max-width: 733px) {
+  .order-list-items {
+    justify-content: center;
+  }
   .order-list {
     flex-wrap: wrap;
     margin-left: auto;

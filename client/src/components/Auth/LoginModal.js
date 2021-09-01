@@ -60,8 +60,15 @@ function LoginModal() {
         className="modal-container"
         style={
           loginModal
-            ? { transform: "translateX(1500px)", pointerEvents: "auto" }
-            : { transform: "translateX(-1500px)", pointerEvents: "none" }
+            ? {
+                display: "flex",
+
+                pointerEvents: "auto",
+              }
+            : {
+                display: "none",
+                pointerEvents: "none",
+              }
         }
       >
         <div className="modal">

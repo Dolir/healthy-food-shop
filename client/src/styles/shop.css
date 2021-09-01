@@ -379,3 +379,22 @@ input[type="checkbox"] {
     margin-left: 0;
   }
 }
+@media only screen and (max-width: 423px) {
+  .items-sort div {
+    flex-wrap: wrap;
+    margin-left: 10px;
+  }
+  .items-sort div h3 {
+    margin-left: 0;
+  }
+  .sort-popup div {
+    margin-left: 0;
+  }
+
+  #searched-for {
+    margin-right: 5px;
+  }
+  .items-sort {
+    justify-content: space-between;
+  }
+}

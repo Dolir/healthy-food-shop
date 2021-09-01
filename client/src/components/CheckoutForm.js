@@ -97,7 +97,7 @@ export default function CheckoutForm({
   }
   return (
     <div
-      className="modal-container"
+      className="modal-container not-transform "
       style={
         checkoutForm
           ? { opacity: 1, pointerEvents: "auto" }
@@ -118,18 +118,21 @@ export default function CheckoutForm({
                 {error}
               </div>
             )}
+            <h3>Card number</h3>
             <CardNumberElement
               className="card-element"
               id="card-number"
               options={cardStyle}
               onChange={handleChange}
             />
+            <h3>Expiration date</h3>
             <CardExpiryElement
               className="card-element"
               id="card-expr"
               options={cardStyle}
               onChange={handleChange}
             />
+            <h3>CVC</h3>
             <CardCvcElement
               className="card-element"
               id="card-cvc"
