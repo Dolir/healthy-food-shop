@@ -40,6 +40,9 @@
   align-self: center;
   margin-right: 20px;
 }
+.cart-item-price {
+  font-size: 18px;
+}
 .quantity-price div p {
   text-align: center;
   font-size: 15px;
@@ -121,6 +124,10 @@
 }
 #checkout-button-unlogged span {
   color: rgb(0, 0, 0);
+}
+.left-side-cart a h3 {
+  width: fit-content;
+  height: fit-content;
 }
 @media only screen and (max-width: 629px) {
   .cartItems-list li {

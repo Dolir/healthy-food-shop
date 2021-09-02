@@ -42,7 +42,8 @@ function CartItem({ item, handleDeleteItem, handleChange }) {
           onMouseLeave={onMouseLeave}
         />
         <div>
-          <strong>{item.price}$</strong> <p>{item.discount}% off</p>
+          <strong className="cart-item-price">{item.price}$</strong>{" "}
+          <p>{item.discount}% off</p>
         </div>
       </div>
     </li>

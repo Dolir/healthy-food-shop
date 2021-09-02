@@ -19,14 +19,15 @@
 }
 
 .result-message {
+  line-height: 40px !important;
   position: relative;
   display: flex;
   align-items: center;
   left: 25%;
   line-height: 22px;
   font-size: 30px;
-
-  width: 300px;
+  font-weight: bold;
+  width: 400px;
   margin: 0;
   height: 100px;
   text-align: center;
@@ -190,11 +191,11 @@
     position: relative;
 
     margin: auto;
-    margin-top: 100px;
+    margin-top: 20px;
     height: inherit;
   }
   #payment-form > div {
-    margin-bottom: 60px;
+    margin-bottom: 30px;
     border: 1px solid gray;
   }
   #payment-form > div input {
@@ -204,6 +205,17 @@
   #payment-form > button {
     height: 50px;
     font-size: 25px;
+  }
+  .result-message {
+    display: block;
+    width: 50vw;
+
+    text-align: center;
+  }
+  .result-msg-container {
+    display: flex;
+    height: 50%;
+    align-items: center;
   }
 }
 @media only screen and (max-width: 600px) {

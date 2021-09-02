@@ -54,10 +54,11 @@
 }
 
 .single-item-price .old-price {
-  margin-top: 10px;
+  margin-top: 0;
   margin-bottom: 0;
   font-size: 18px;
-  margin-left: 3px;
+
+  text-align: center;
 }
 .buy-btn {
   height: 50px;

@@ -20,15 +20,15 @@
   background: linear-gradient(
     90deg,
     rgba(191, 24, 24, 1) 50%,
-    rgb(226, 161, 70) 50%
+    rgb(189, 134, 57) 50%
   );
 }
 
 .reviews-container {
-  background: rgb(226, 161, 70);
+  background: rgb(189, 134, 57);
   background: linear-gradient(
     90deg,
-    rgb(226, 161, 70) 50%,
+    rgb(189, 134, 57) 50%,
     rgba(191, 24, 24, 1) 50%
   );
 

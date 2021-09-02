@@ -106,7 +106,9 @@ export default function CheckoutForm({
           &times;
         </button>
         {succeeded ? (
-          <p className="result-message">Payment succeeded!</p>
+          <div className="result-msg-container">
+            <p className="result-message">Payment succeeded!</p>
+          </div>
         ) : (
           <form id="payment-form" onSubmit={handleSubmit}>
             {" "}
