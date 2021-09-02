@@ -44,7 +44,7 @@ input[type="checkbox"] {
 }
 .items-grid-container {
   border-top: 1px solid rgba(0, 0, 0, 0.18);
-  /* border-left: 1px solid rgba(0, 0, 0, 0.18); */
+
   margin-right: 40px;
   margin-left: 20px;
   height: inherit;
@@ -161,7 +161,8 @@ input[type="checkbox"] {
   margin-top: 8px;
   margin-right: 8px;
   margin-left: 8px;
-  height: 20px;
+
+  height: 25px;
   width: 30px;
 }
 .active-page {
@@ -170,6 +171,7 @@ input[type="checkbox"] {
 .just-page {
   box-shadow: 0 0px 4px rgba(0, 0, 0, 1);
   border-radius: 3px;
+
   text-align: center;
   width: inherit;
   height: inherit;

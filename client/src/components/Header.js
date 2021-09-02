@@ -9,7 +9,7 @@ import Logout from "./Auth/Logout";
 import RegisterModal from "./Auth/RegisterModal";
 import LoginModal from "./Auth/LoginModal";
 import { useSelector } from "react-redux";
-// import { getCartItemsCount, clearCartCount } from "../features/cart/cartSlice";
+
 function Header() {
   const { pathname } = useLocation();
   const auth = useSelector((state) => state.auth);
@@ -59,12 +59,6 @@ function Header() {
             >
               Contacts
             </NavLink>
-            <NavLink
-              to="/account"
-              className={pathname.startsWith("/account") ? "active-nav" : ""}
-            >
-              Account
-            </NavLink>
           </nav>
         </div>
         <Searchbar />
@@ -79,7 +73,6 @@ function Header() {
         </div>
       </header>
       <header className="wrapper">
-        {" "}
         <div
           className="header-modal"
           style={
@@ -109,24 +102,12 @@ function Header() {
             </li>
 
             <li>
-              {" "}
               <NavLink
                 onClick={onClick}
                 to="/contacts"
                 className={pathname.startsWith("/contacts") ? "active-nav" : ""}
               >
                 Contacts
-              </NavLink>
-            </li>
-
-            <li>
-              {" "}
-              <NavLink
-                onClick={onClick}
-                to="/account"
-                className={pathname.startsWith("/account") ? "active-nav" : ""}
-              >
-                Account
               </NavLink>
             </li>
 

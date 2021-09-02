@@ -11,13 +11,7 @@ const initialState = {
   isLoading: null,
   count: 0,
 };
-// export const getCartItemsCount = createAsyncThunk(
-//   "cart/getCartItemsCount",
-//   async (userID) => {
-//     const response = await axios.get(`/api/auth/cartCount?userID=${userID}`);
-//     return response.data;
-//   }
-// );
+
 export const addCartItemAsync = createAsyncThunk(
   "cart/addCartItem",
   async (item) => {

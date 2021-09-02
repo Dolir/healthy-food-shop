@@ -18,7 +18,7 @@ function ItemsList() {
 
   React.useEffect(() => {
     if (!itemsList) return;
-    // clearTimeout(timeout);
+
     resetTimeout();
     timeoutRef.current = setTimeout(arrowSlideRight, 5000);
 
@@ -27,7 +27,6 @@ function ItemsList() {
     }px)`;
     return () => {
       resetTimeout();
-      // clearTimeout(timeout);
     };
   }, [counter, itemsList]);
   function resetTimeout() {
@@ -61,10 +60,7 @@ function ItemsList() {
       setCounter(counter + 1);
     }
   }
-  // let timeout;
-  // if (items.isLoading === false) {
-  //   timeout = setTimeout(arrowSlideRight, 5000);
-  // }
+
   async function getWidth() {
     return await document.querySelector(".item").clientWidth;
   }
@@ -85,24 +81,13 @@ function ItemsList() {
       <div className="items-container">
         {items.isLoading ? (
           <ul className="itemsList">
-            <li className="item">
-              <LoadingBlock width={getWidth} height={getHeight} />
-            </li>
-            <li className="item">
-              <LoadingBlock width={getWidth} height={getHeight} />
-            </li>
-            <li className="item">
-              <LoadingBlock width={getWidth} height={getHeight} />
-            </li>
-            <li className="item">
-              <LoadingBlock width={getWidth} height={getHeight} />
-            </li>
-            <li className="item">
-              <LoadingBlock width={getWidth} height={getHeight} />
-            </li>
-            <li className="item">
-              <LoadingBlock width={getWidth} height={getHeight} />
-            </li>
+            {Array(12)
+              .fill(
+                <li className="item">
+                  <LoadingBlock />
+                </li>
+              )
+              .map((x, key) => ({ ...x, key: key }))}
           </ul>
         ) : (
           <ul className="itemsList">

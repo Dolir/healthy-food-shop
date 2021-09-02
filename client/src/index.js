@@ -3,11 +3,10 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import { store } from "./app/store";
 import { Provider } from "react-redux";
-import Footer from "./components/Footer";
+
 ReactDOM.render(
   <Provider store={store}>
     <App />
-    <Footer />
   </Provider>,
   document.getElementById("root")
 );

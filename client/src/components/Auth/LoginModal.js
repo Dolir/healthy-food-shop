@@ -83,7 +83,6 @@ function LoginModal() {
                 <input
                   type="text"
                   name="email"
-                  id="email"
                   placeholder="email"
                   onChange={onChange}
                 />
@@ -93,7 +92,6 @@ function LoginModal() {
                 <input
                   type="password"
                   name="password"
-                  id="password"
                   placeholder="password"
                   onChange={onChange}
                 />

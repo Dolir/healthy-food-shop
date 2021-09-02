@@ -53,16 +53,21 @@
   transition-duration: 0.3s;
 }
 .arrow-right-btn {
+  border-radius: 0 40px 40px 0;
   margin-left: 100px;
 }
+.arrow-left-btn {
+  border-radius: 40px 0 0 40px;
+}
+
 .arrow-left-btn,
 .arrow-right-btn {
   height: 25px;
   width: 50px;
-  border-radius: 10px;
+
   background-color: rgb(243, 207, 146);
   border: 0;
-  box-shadow: 0 0px 7px rgba(0, 0, 0, 1);
+  box-shadow: 0 0px 3px rgba(0, 0, 0, 1);
 }
 .arrow-left-btn:active,
 .arrow-right-btn:active {
@@ -75,19 +80,22 @@
   transition-duration: 0.3s;
 }
 .tocart-btn {
+  font-weight: 600;
   width: 100px;
   height: 30px;
   border-radius: 10px;
   font-size: 16px;
   color: rgb(255, 255, 255);
-  background-color: rgb(83, 80, 81);
+  background-color: #bb2904;
+  outline: none;
+  border: 0 !important;
 }
 .tocart-btn:active {
-  background-color: rgb(46, 46, 46) !important;
+  filter: brightness(50%);
   transform: translateY(2px);
 }
 .tocart-btn:hover {
-  background-color: rgb(122, 122, 122);
+  filter: brightness(90%);
 }
 .item-name {
   font-size: 20px;

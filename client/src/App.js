@@ -6,11 +6,11 @@ import Header from "./components/Header";
 import Shop from "./components/ShopPage/Shop";
 import SingleItem from "./components/ShopPage/SingleItem";
 import Contacts from "./components/Contacts";
-import Account from "./components/Account";
+
 import { loadUser } from "./features/auth/authSlice";
 import Cart from "./components/Cart";
 import Orders from "./components/Orders";
-
+import Footer from "./components/Footer";
 import { useDispatch } from "react-redux";
 function App() {
   const dispatch = useDispatch();
@@ -45,13 +45,12 @@ function App() {
           <Route path="/contacts">
             <Contacts />
           </Route>
-          <Route path="/account">
-            <Account />
-          </Route>
+
           <Route path="/">
             <Home />
           </Route>
         </Switch>
+        <Footer />
       </Router>
     </div>
   );

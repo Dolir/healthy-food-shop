@@ -8,23 +8,29 @@
   margin-right: 10px;
   margin-left: 10px;
   font-size: 25px;
-  height: 45%;
 }
 .review {
-  border-radius: 10px;
-  box-shadow: 0 0px 4px rgba(0, 0, 0, 1);
   margin-right: 10px;
   margin-left: 10px;
-  height: 500px;
+  color: rgb(255, 255, 255);
   width: 400px;
   word-break: break-all;
-  background-color: rgba(255, 255, 255, 0.9);
+  background: rgb(191, 24, 24);
+
+  background: linear-gradient(
+    90deg,
+    rgba(191, 24, 24, 1) 50%,
+    rgb(226, 161, 70) 50%
+  );
 }
 
 .reviews-container {
-  background-image: url(../images/fruits.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
+  background: rgb(226, 161, 70);
+  background: linear-gradient(
+    90deg,
+    rgb(226, 161, 70) 50%,
+    rgba(191, 24, 24, 1) 50%
+  );
 
   border-radius: 5px;
   width: inherit;
@@ -42,15 +48,12 @@
 }
 @media only screen and (max-width: 1570px) {
   .review p {
-    height: 50%;
-  }
-  .review {
-    height: 550px;
+    height: inherit;
   }
 }
 @media only screen and (max-width: 1090px) {
   .review {
-    height: 530px;
+    height: max-content;
     margin-top: 20px;
   }
   .reviews-block {

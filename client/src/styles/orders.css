@@ -35,8 +35,6 @@
   text-align: center;
   margin-top: 0;
 }
-.order-list > div {
-}
 .order-list-items span {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.308);
   line-height: 25px;
@@ -79,20 +77,4 @@
   .order-list-dateTotal {
     display: flex;
   }
-}
-@media only screen and (max-width: 380px) {
-  /* .order-list {
-    flex-wrap: wrap;
-    margin-left: auto;
-    margin-right: auto;
-    flex-direction: column;
-  }
-  .order-list-items-container {
-    border-right: 0;
-  }
-  .order-list-items {
-    flex-wrap: wrap;
-    flex-direction: column;
-    width: fit-content;
-  } */
 }

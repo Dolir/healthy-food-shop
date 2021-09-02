@@ -62,7 +62,7 @@
 .buy-btn {
   height: 50px;
   font-size: 30px;
-  background-color: rgb(202, 62, 62);
+  background-color: #bb2904;
 }
 .buy-btn:hover {
   background-color: rgb(216, 139, 139);
@@ -75,7 +75,7 @@
   padding-left: 20px;
   margin-top: 0;
   margin-right: 20px;
-  /* box-shadow: 0 0 4px rgba(0, 0, 0, 0.384); */
+
   list-style: none;
 }
 .single-reviews-form {
@@ -221,7 +221,7 @@
   margin-top: 10px;
   border: 0;
   height: 30px;
-  background-color: rgb(78, 78, 78);
+  background-color: #8a1d01;
   color: white;
   border-radius: 5px;
 }

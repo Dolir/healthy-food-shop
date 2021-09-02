@@ -11,6 +11,7 @@ function Review({ data }) {
       let empty = "empty";
       resultArray.unshift(
         <svg
+          stroke="white"
           width="24"
           height="24"
           xmlns="http://www.w3.org/2000/svg"
@@ -25,6 +26,7 @@ function Review({ data }) {
     for (let i = 0; i < white; i++) {
       resultArray.unshift(
         <svg
+          fill="white"
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="24"

@@ -218,7 +218,6 @@ function SingleItem() {
       </div>
     );
   }
-  const response = document.querySelector(".single-item-container");
   return (
     <div className="sngitem">
       <div className="single-item-container adaptive-mobile">

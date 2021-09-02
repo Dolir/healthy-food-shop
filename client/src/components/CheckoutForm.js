@@ -25,7 +25,6 @@ export default function CheckoutForm({
   const elements = useElements();
 
   useEffect(() => {
-    // Create PaymentIntent as soon as the page loads
     window
       .fetch("/api/payment/create-payment-intent", {
         method: "POST",
@@ -66,8 +65,6 @@ export default function CheckoutForm({
   };
 
   const handleChange = async (event) => {
-    // Listen for changes in the CardElement
-    // and display any errors as the customer types their card details
     setDisabled(event.empty);
     setError(event.error ? event.error.message : "");
   };
@@ -148,8 +145,6 @@ export default function CheckoutForm({
                 )}
               </span>
             </button>
-            {/* Show any error that happens when processing the payment */}
-            {/* Show a success message upon completion */}
           </form>
         )}
       </div>

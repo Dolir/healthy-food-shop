@@ -36,12 +36,8 @@ function SingleItemLoading(props) {
   return (
     <ContentLoader
       speed={2}
-      width={async () =>
-        await document.querySelector(".single-item-container").clientWidth
-      }
-      height={async () =>
-        await document.querySelector(".single-item-container").clientHeight
-      }
+      width={1000}
+      height={2000}
       viewBox="0 0 1000 2000"
       backgroundColor="#f3f3f3"
       foregroundColor="#ecebeb"

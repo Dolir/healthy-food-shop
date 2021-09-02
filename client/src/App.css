@@ -8,7 +8,7 @@ html {
   box-sizing: border-box;
 }
 body {
-  font-family: "Atkinson Hyperlegible", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 300;
   margin: 0;
   margin-top: 8px;
@@ -30,7 +30,7 @@ body {
 .App {
   width: 1505px;
   min-height: 900px;
-  box-shadow: 0 0px 11px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 0px 11px rgba(0, 0, 0, 0.3);
 }
 #root {
   width: 100%;
@@ -39,12 +39,6 @@ body {
   flex-wrap: wrap;
 }
 
-/* h1,
-h2,
-h3,
-h4,
-p,
-span, */
 button {
   cursor: pointer;
 }
@@ -84,9 +78,4 @@ button {
   .App {
     width: 100%;
   }
-}
-@media only screen and (max-width: 687px) {
-  /* .App {
-    width: 505px;
-  } */
 }
