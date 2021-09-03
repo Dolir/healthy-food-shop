@@ -7,7 +7,7 @@ function LoadingBlock(props) {
       width={250}
       height={500}
       viewBox="0 0 250 500"
-      backgroundColor="#dadada"
+      backgroundColor="#f3f3f3"
       foregroundColor="#ecebeb"
       {...props}
     >
