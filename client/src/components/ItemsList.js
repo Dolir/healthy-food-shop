@@ -61,12 +61,6 @@ function ItemsList() {
     }
   }
 
-  async function getWidth() {
-    return await document.querySelector(".item").clientWidth;
-  }
-  async function getHeight() {
-    return await document.querySelector(".item").clientHeight;
-  }
   return (
     <div className="carousel">
       <h1 className="header-text">Best selling</h1>

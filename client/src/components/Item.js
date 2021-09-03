@@ -33,7 +33,7 @@ function Item({ item }) {
         <div>
           <span className="old-price">
             {parseInt(item.discount) === 0 ? (
-              <h3></h3>
+              <h3 alt="empty-space"></h3>
             ) : (
               parseInt(item.price) + parseInt(item.discount) + "$"
             )}
