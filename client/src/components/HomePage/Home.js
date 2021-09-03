@@ -4,6 +4,10 @@ import "../../styles/home.css";
 import ItemsList from "../ItemsList";
 import ReviewsBlock from "../ReviewsBlock";
 function Home() {
+  React.useEffect(() => {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE
+  }, []);
   return (
     <div className="main-page">
       <div className="main">

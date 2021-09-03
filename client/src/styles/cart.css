@@ -65,6 +65,7 @@
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
+  height: 90%;
 }
 .cart-content {
   width: 90%;
@@ -72,6 +73,9 @@
 .cart-content h1 {
   padding-bottom: 5px;
   border-bottom: 1px solid black;
+}
+.cart-content > button {
+  background-color: rgb(209, 209, 209);
 }
 .cart-content button {
   border: 0;

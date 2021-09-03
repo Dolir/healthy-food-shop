@@ -156,6 +156,7 @@ nav {
     transition-duration: 0.5s;
   }
   .header-modal {
+    top: 0;
     display: flex;
     width: 100vw;
     height: 100vh;

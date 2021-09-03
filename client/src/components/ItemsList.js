@@ -84,7 +84,7 @@ function ItemsList() {
             {Array(12)
               .fill(
                 <li className="item">
-                  <LoadingBlock />
+                  <LoadingBlock className="item" />
                 </li>
               )
               .map((x, key) => ({ ...x, key: key }))}

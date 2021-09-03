@@ -8,6 +8,10 @@ function Orders() {
   const orders = useSelector((state) => state.orders);
   const dispatch = useDispatch();
   React.useEffect(() => {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE
+  }, []);
+  React.useEffect(() => {
     if (auth.isAuthenticated) {
       dispatch(getOrders(auth.user._id));
     }

@@ -8,7 +8,7 @@ function SingleItemLoading(props) {
         width={1000}
         height={1000}
         viewBox="0 0 1000 1000"
-        backgroundColor="#f3f3f3"
+        backgroundColor="#dadada"
         foregroundColor="#ecebeb"
         {...props}
       >
@@ -39,7 +39,7 @@ function SingleItemLoading(props) {
       width={1000}
       height={2000}
       viewBox="0 0 1000 2000"
-      backgroundColor="#f3f3f3"
+      backgroundColor="#dadada"
       foregroundColor="#ecebeb"
       {...props}
     >
