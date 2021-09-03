@@ -1,4 +1,4 @@
 {
-  "mongoURI": "mongodb+srv://dolirdollar:2103041300@cluster0.3hprx.mongodb.net/Healthy-mern-shop?retryWrites=true&w=majority",
+  "mongoURI": "mongodb+srv://123:123@cluster0.3hprx.mongodb.net/Healthy-mern-shop?retryWrites=true&w=majority",
   "jwtSecret": "jwrtSecret"
 }
