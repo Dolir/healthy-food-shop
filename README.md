@@ -1,12 +1,10 @@
 # Healthy-food-shop
-Online store
-Color Pic
-The Color Pic application uses image recognition to predict what the dominant colors are in a given picture. The colors are then used to generate a suggested color palette with colors that work well together. This works in a semi-random way, so hit regenerate to see a different color set each time.
+Online store for buying food
 
 ## User Story:
-* User can upload a picture url, capture the main colors, and generate a selected color palette
-* User can adjust colors
-* User can save palettes for future reference
+* User can add items to his personal cart
+* User can search for items using searchbar
+* User can order items in his cart
 * User can create a new user profile and login
 ## [Live demo](https://healthy-food-shop.herokuapp.com/)
 ![alt text](https://github.com/Dolir/healthy-food-shop/blob/main/client/public/homepage.png "Home page")
